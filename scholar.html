@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Scholar Summary</title>
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  html { overflow-x: hidden; }
+  body { background: #fff; color: #0D1D32; font-size: 1.1em; line-height: 1.5; margin: 1.5em 0em 0em;
+    -webkit-text-size-adjust: 100%;
+    font-family: times, serif; }
+  @media screen and (max-width: 600px) {
+    body { font-size: 1em; }
+  }
+
+  a { color: inherit; text-decoration: none; border-bottom: 1px solid;
+    transition: color 200ms ease-in-out; }
+  a:hover { color: rgb(0,204,255); }
+
+  .wrapper { position: relative; max-width: 42em; margin: 0 auto; padding: 0 1.5em; box-sizing: border-box; }
+
+  header { margin-bottom: 0.5em; }
+  header h1 { font-family: times, serif; font-size: 2.4em; font-weight: normal; line-height: 1.2; margin: 0 0 0.1em; }
+  .subtitle { font-size: 0.5em; font-weight: normal; color: #6A727C; }
+
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    padding: 0.8em 0; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; margin-bottom: 1.5em; }
+  .controls label { font-size: 0.82rem; color: #6A727C; display: flex; align-items: center; gap: 6px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .controls input[type=date] { padding: 4px 8px; border: 1px solid #d4d0c8; border-radius: 2px;
+    font-size: 0.82rem; background: #fff; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .btn { padding: 6px 18px; background: #0D1D32; color: #fff; border: none; border-radius: 2px;
+    font-size: 0.82rem; font-weight: 600; cursor: pointer; letter-spacing: 0.04em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .btn:disabled { background: #999; cursor: wait; }
+  .btn:hover:not(:disabled) { background: #333; }
+  .count { font-size: 0.78rem; color: #6A727C; margin-left: 4px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+  .journal-section { margin-bottom: 2em; }
+  .journal-header { margin-bottom: 0.6em; padding-bottom: 0.3em; border-bottom: 1px solid #e0e0e0; }
+  .journal-tag { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 2px 8px; border-radius: 2px; color: #fff; margin-right: 8px; vertical-align: middle;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .journal-name { font-family: times, serif; font-size: 1.4em; font-weight: normal; }
+
+  .loading { padding: 1em 0; color: #6A727C; font-size: 0.85rem; font-style: italic;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .error-box { padding: 0.8em; background: #FFF3F0; border-left: 3px solid #8B2500;
+    font-size: 0.85rem; color: #8B2500; margin-bottom: 0.8em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .empty { padding: 0.8em 0; color: #6A727C; font-size: 0.85rem; font-style: italic;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+  .card { border-bottom: 1px dashed #ddd; padding: 0.8em 0; }
+  .card:last-child { border-bottom: none; }
+  .card-title { font-family: times, serif; font-size: 1.15em; font-weight: normal; line-height: 1.35; margin-bottom: 0.2em; }
+  .card-title a { color: #0D1D32; border-bottom: 1px solid #ccc; }
+  .card-title a:hover { color: rgb(0,204,255); border-bottom-color: rgb(0,204,255); }
+  .card-authors { font-size: 0.78rem; color: #6A727C; margin-bottom: 0.3em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .card-abstract { font-size: 0.82rem; color: #444; line-height: 1.55; margin-bottom: 0.3em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .card-meta { font-size: 0.7rem; color: #6A727C; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .card-meta a { color: #2E5090; border-bottom: none; font-size: 0.7rem; }
+  .card-meta a:hover { color: rgb(0,204,255); }
+  .card-meta .oa { color: #8B2500; font-weight: 600; }
+
+  .footer { font-size: 0.75rem; color: #6A727C; border-top: 1px dashed #ccc;
+    padding-top: 0.8em; margin-top: 1.5em; line-height: 1.7;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+  @media(max-width:600px){
+    .wrapper { padding: 0 1em; }
+    header h1 { font-size: 1.8em; }
+    .journal-name { font-size: 1.15em; }
+    .card-title { font-size: 1em; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1>Weekly Publications Summary<br /><span class="subtitle">Communication, Media Studies &amp; Digital Culture</span></h1>
+  </header>
+
+  <div class="controls">
+    <label>From <input type="date" id="startDate"></label>
+    <label>To <input type="date" id="endDate"></label>
+    <button class="btn" id="fetchBtn" onclick="fetchAll()">Fetch</button>
+    <span class="count" id="totalCount"></span>
+  </div>
+
+  <div id="results"></div>
+
+  <div class="footer">
+    <strong>Data source:</strong> Crossref API (api.crossref.org). All DOI links resolve to publisher pages.<br>
+    <strong>Journals:</strong> NM&amp;S (1461-4448) · ICS (1369-118X) · JoC (0021-9916) · MC&amp;S (0163-4437) · CT (1050-3293)<br>
+    <strong>Note:</strong> Crossref indexes articles once DOIs are registered. Some Online First articles may appear with a short delay.
+  </div>
+</div>
+
+<script>
+const JOURNALS = [
+  { name:"New Media & Society", abbr:"NM&S", issn:"1461-4448", color:"#2E5090" },
+  { name:"Information, Communication & Society", abbr:"ICS", issn:"1369-118X", color:"#6B4C8A" },
+  { name:"Journal of Communication", abbr:"JoC", issn:"0021-9916", color:"#1A6B4E" },
+  { name:"Media, Culture & Society", abbr:"MC&S", issn:"0163-4437", color:"#B8860B" },
+  { name:"Communication Theory", abbr:"CT", issn:"1050-3293", color:"#8B0000" },
+];
+
+(function init(){
+  const end = new Date();
+  const start = new Date();
+  start.setDate(start.getDate() - 14);
+  document.getElementById("startDate").value = fmt(start);
+  document.getElementById("endDate").value = fmt(end);
+  fetchAll();
+})();
+
+function fmt(d){ return d.toISOString().split("T")[0]; }
+
+function formatAuthors(authors){
+  if(!authors||authors.length===0) return "Authors not available";
+  const arr = authors.map(a=>{
+    const fam = a.family||"";
+    const giv = a.given||"";
+    const ini = giv.split(/[\s-]+/).filter(Boolean).map(n=>n.charAt(0)+".").join("");
+    return fam + (ini ? ", "+ini : "");
+  });
+  if(arr.length<=3) return arr.join("; ");
+  return arr[0]+"; "+arr[1]+" et al.";
+}
+
+function formatPubDate(parts){
+  if(!parts||parts.length===0) return null;
+  const d = new Date(parts[0], (parts[1]||1)-1, parts[2]||1);
+  return d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+}
+
+function stripHtml(s){ return s ? s.replace(/<[^>]*>/g,"") : ""; }
+
+function escHtml(s){
+  const div=document.createElement("div");
+  div.textContent=s;
+  return div.innerHTML;
+}
+
+async function fetchJournal(issn, startDate, endDate){
+  const url = `https://api.crossref.org/journals/${issn}/works?filter=from-pub-date:${startDate},until-pub-date:${endDate}&sort=published&order=desc&rows=30&mailto=scholar-weekly@example.com`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error("HTTP "+res.status);
+  const data = await res.json();
+  return (data.message?.items||[]).map(item=>({
+    title: Array.isArray(item.title)?item.title[0]:item.title||"Untitled",
+    authors: item.author||[],
+    doi: item.DOI||null,
+    url: item.URL||(item.DOI?"https://doi.org/"+item.DOI:null),
+    published: item.published?.["date-parts"]?.[0]||null,
+    type: item.type||"article",
+    isOA: (item.license||[]).some(l=>(l.URL||"").includes("creativecommons")),
+    volume: item.volume||null,
+    issue: item.issue||null,
+    page: item.page||null,
+    abstract: item.abstract?stripHtml(item.abstract).substring(0,320):null,
+  }));
+}
+
+function renderCard(a){
+  const pubDate = formatPubDate(a.published);
+  const titleHtml = a.url
+    ? `<a href="${escHtml(a.url)}" target="_blank" rel="noopener">${escHtml(a.title)}</a>`
+    : escHtml(a.title);
+
+  let metaParts = [];
+  if(a.isOA) metaParts.push('<span class="oa">Open Access</span>');
+  if(pubDate) metaParts.push(pubDate);
+  if(a.volume) metaParts.push("Vol. "+a.volume+(a.issue?", No. "+a.issue:""));
+  if(a.page) metaParts.push("pp. "+a.page);
+  if(a.doi) metaParts.push(`<a href="https://doi.org/${escHtml(a.doi)}" target="_blank" rel="noopener">${escHtml(a.doi)}</a>`);
+
+  return `<div class="card">
+    <div class="card-title">${titleHtml}</div>
+    <div class="card-authors">${escHtml(formatAuthors(a.authors))}</div>
+    ${a.abstract?`<div class="card-abstract">${escHtml(a.abstract)}${a.abstract.length>=320?"...":""}</div>`:""}
+    <div class="card-meta">${metaParts.join(" · ")}</div>
+  </div>`;
+}
+
+function renderSection(journal, articles, error){
+  let body = "";
+  if(error){
+    body = `<div class="error-box">Could not retrieve data for this journal. Crossref may be temporarily unavailable.</div>`;
+  } else if(articles&&articles.length===0){
+    body = `<div class="empty">No articles found in this date range.</div>`;
+  } else if(articles){
+    body = articles.map(renderCard).join("");
+  }
+
+  return `<div class="journal-section">
+    <div class="journal-header">
+      <span class="journal-tag" style="background:${journal.color}">${escHtml(journal.abbr)}</span>
+      <span class="journal-name">${escHtml(journal.name)}</span>
+    </div>
+    ${body}
+  </div>`;
+}
+
+async function fetchAll(){
+  const btn = document.getElementById("fetchBtn");
+  const resultsEl = document.getElementById("results");
+  const countEl = document.getElementById("totalCount");
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+
+  btn.disabled = true;
+  btn.textContent = "Fetching...";
+  countEl.textContent = "";
+  resultsEl.innerHTML = "";
+
+  let totalArticles = 0;
+  let html = "";
+
+  for(const j of JOURNALS){
+    resultsEl.innerHTML = html + renderSection(j, null, false).replace("</div></div>",
+      '<div class="loading">Fetching from Crossref...</div></div></div>');
+
+    try {
+      const articles = await fetchJournal(j.issn, startDate, endDate);
+      totalArticles += articles.length;
+      html += renderSection(j, articles, false);
+    } catch(err){
+      console.error("Error fetching "+j.issn, err);
+      html += renderSection(j, null, true);
+    }
+    resultsEl.innerHTML = html;
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Fetch";
+  countEl.textContent = totalArticles + " article" + (totalArticles!==1?"s":"") + " found";
+}
+</script>
+</body>
+</html>
