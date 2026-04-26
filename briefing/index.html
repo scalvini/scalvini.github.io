@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Morning Briefing – 24 April 2026</title>
+<title>Weekend Briefing — 26 April 2026</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,6 +13,7 @@ header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
 header .meta { font-size: 12px; color: #888; margin-top: 3px; }
 section { border-top: 1px solid #e5e5e5; padding: 24px 0; }
 .section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 14px; }
+.part-divider { border-top: 3px solid #0a0a0a; margin: 8px 0; padding-top: 28px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #888; }
 .ticker-block { margin-bottom: 10px; }
 .ticker-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 6px; }
 .ticker-row { display: flex; flex-wrap: wrap; gap: 4px 20px; }
@@ -21,7 +22,6 @@ section { border-top: 1px solid #e5e5e5; padding: 24px 0; }
 .ticker .t-chg { font-size: 11px; margin-left: 2px; }
 .pos { color: #16a34a; }
 .neg { color: #dc2626; }
-.alert { background: #fef2f2; border-left: 3px solid #dc2626; padding: 14px 18px; font-size: 13px; font-weight: 500; margin-bottom: 0; }
 ul { margin: 8px 0 12px 18px; }
 ul li { font-size: 14px; margin-bottom: 4px; padding-left: 4px; }
 ul li::marker { color: #888; }
@@ -33,11 +33,16 @@ ul li a:hover { text-decoration: underline; }
 .story-headline a { color: #0a0a0a; text-decoration: none; }
 .story-headline a:hover { text-decoration: underline; }
 .story-source { font-size: 11px; color: #888; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-.portfolio-note { font-size: 12px; color: #2563eb; margin-top: 4px; font-style: italic; }
 a { color: #2563eb; text-decoration: none; }
 a:hover { text-decoration: underline; }
 p { font-size: 14px; margin-bottom: 10px; }
 p:last-child { margin-bottom: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; text-align: left; padding: 7px 10px; border-bottom: 2px solid #0a0a0a; }
+td { padding: 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+td:first-child { font-family: 'DM Mono', monospace; font-size: 12px; white-space: nowrap; }
+td a { color: #2563eb; text-decoration: none; }
+td a:hover { text-decoration: underline; }
 .cb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1px; background: #e5e5e5; border: 1px solid #e5e5e5; }
 .cb-cell { background: #fff; padding: 14px; }
 .cb-bank { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 4px; }
@@ -45,18 +50,9 @@ p:last-child { margin-bottom: 0; }
 .cb-detail { font-size: 12px; color: #444; line-height: 1.5; }
 .cb-detail a { color: #2563eb; }
 .portfolio { background: #f7f7f7; padding: 18px; }
-.watch-box { background: #f7f7f7; padding: 14px; margin-bottom: 16px; }
+.watch-box { background: #f7f7f7; padding: 14px; }
 .watch-box .big-number { font-family: 'DM Mono', monospace; font-size: 24px; font-weight: 500; margin: 6px 0 4px; }
 .theme { background: #f7f7f7; padding: 18px; }
-.financial-todos { background: #f7f7f7; padding: 14px 18px; margin-top: 16px; }
-.financial-todos .section-label { margin-bottom: 8px; }
-.financial-todos li { font-size: 13px; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
-th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; text-align: left; padding: 7px 10px; border-bottom: 2px solid #0a0a0a; }
-td { padding: 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
-td:first-child { font-family: 'DM Mono', monospace; font-size: 12px; white-space: nowrap; }
-td a { color: #2563eb; text-decoration: none; }
-td a:hover { text-decoration: underline; }
 footer { padding-top: 16px; border-top: 1px solid #e5e5e5; font-size: 11px; color: #888; margin-top: 8px; }
 @media (max-width: 600px) { body { padding: 20px 14px; } .cb-grid { grid-template-columns: 1fr 1fr; } table { font-size: 12px; } }
 </style>
@@ -64,224 +60,246 @@ footer { padding-top: 16px; border-top: 1px solid #e5e5e5; font-size: 11px; colo
 <body>
 
 <header>
-<h1>Morning Briefing</h1>
-<div class="meta">Friday 24 April 2026 · 06:00 BST</div>
+<h1>Weekend Briefing</h1>
+<div class="meta">Saturday 26 April 2026 · 6:00 PM BST</div>
 </header>
-<!-- TICKERS -->
+
+<!-- SECTION 1: TICKERS -->
 <section>
-<div class="section-label">Markets</div>
+<div class="section-label">Market Close · Week of 21–25 April 2026</div>
 
 <div class="ticker-block">
 <div class="ticker-label">Europe</div>
 <div class="ticker-row">
-<span class="ticker"><span class="t-name">Euro Stoxx 50</span>5,942 <span class="t-chg pos">+0.10%</span></span>
-<span class="ticker"><span class="t-name">DAX</span>24,044 <span class="t-chg pos">+1.27%</span></span>
-<span class="ticker"><span class="t-name">CAC 40</span>24,155 <span class="t-chg pos">+0.16%</span></span>
-<span class="ticker"><span class="t-name">FTSE MIB</span>46,078 <span class="t-chg pos">+0.50%</span></span>
-<span class="ticker"><span class="t-name">IBEX 35</span>17,886 <span class="t-chg pos">+0.67%</span></span>
-<span class="ticker"><span class="t-name">FTSE 100</span>10,609 <span class="t-chg pos">+0.25%</span></span>
+<div class="ticker"><span class="t-name">Euro Stoxx 50</span>5,284 <span class="t-chg neg">&minus;2.5%</span></div>
+<div class="ticker"><span class="t-name">DAX</span>22,143 <span class="t-chg neg">&minus;2.3%</span></div>
+<div class="ticker"><span class="t-name">CAC 40</span>8,163 <span class="t-chg neg">&minus;3.2%</span></div>
+<div class="ticker"><span class="t-name">FTSE MIB</span>37,420 <span class="t-chg neg">&minus;2.5%</span></div>
+<div class="ticker"><span class="t-name">IBEX 35</span>17,632 <span class="t-chg neg">&minus;2.1%</span></div>
+<div class="ticker"><span class="t-name">FTSE 100</span>10,425 <span class="t-chg neg">&minus;2.7%</span></div>
 </div>
 </div>
 
 <div class="ticker-block">
-<div class="ticker-label">US / Asia (Previous Close)</div>
+<div class="ticker-label">US / Asia</div>
 <div class="ticker-row">
-<span class="ticker"><span class="t-name">S&P 500</span>7,108 <span class="t-chg neg">&minus;0.41%</span></span>
-<span class="ticker"><span class="t-name">Nasdaq</span>24,439 <span class="t-chg neg">&minus;0.89%</span></span>
-<span class="ticker"><span class="t-name">Dow Jones</span>49,310 <span class="t-chg neg">&minus;0.36%</span></span>
-<span class="ticker"><span class="t-name">Nikkei 225</span>59,140 <span class="t-chg neg">&minus;0.75%</span></span>
+<div class="ticker"><span class="t-name">S&amp;P 500</span>7,166 <span class="t-chg pos">+0.6%</span></div>
+<div class="ticker"><span class="t-name">Nasdaq</span>24,837 <span class="t-chg pos">+1.5%</span></div>
+<div class="ticker"><span class="t-name">Dow</span>49,231 <span class="t-chg neg">&minus;0.4%</span></div>
+<div class="ticker"><span class="t-name">Nikkei 225</span>59,736 <span class="t-chg pos">+2.1%</span></div>
 </div>
 </div>
 
 <div class="ticker-block">
 <div class="ticker-label">FX / Commodities</div>
 <div class="ticker-row">
-<span class="ticker"><span class="t-name">EUR/USD</span>1.1683</span>
-<span class="ticker"><span class="t-name">EUR/GBP</span>0.8690</span>
-<span class="ticker"><span class="t-name">GBP/USD</span>1.3517</span>
-<span class="ticker"><span class="t-name">Brent Crude</span>$103.67 <span class="t-chg pos">+2.5%</span></span>
-<span class="ticker"><span class="t-name">Gold</span>$4,758 <span class="t-chg pos">+0.82%</span></span>
-<span class="ticker"><span class="t-name">VIX</span>19.64 <span class="t-chg neg">+3.81%</span></span>
+<div class="ticker"><span class="t-name">EUR/USD</span>1.1720 <span class="t-chg pos">+0.8%</span></div>
+<div class="ticker"><span class="t-name">EUR/GBP</span>0.8661 <span class="t-chg neg">&minus;0.2%</span></div>
+<div class="ticker"><span class="t-name">GBP/USD</span>1.3524 <span class="t-chg pos">+0.9%</span></div>
+<div class="ticker"><span class="t-name">Brent Crude</span>$105.70 <span class="t-chg pos">+17.0%</span></div>
+<div class="ticker"><span class="t-name">Gold</span>$4,741 <span class="t-chg pos">+0.4%</span></div>
+<div class="ticker"><span class="t-name">VIX</span>18.71 <span class="t-chg neg">&minus;3.1%</span></div>
+</div>
+</div>
+
+<div class="ticker-block">
+<div class="ticker-label">Portfolio</div>
+<div class="ticker-row">
+<div class="ticker"><span class="t-name">VOO (USD)</span>$656.42 <span class="t-chg">7d <span class="pos">+0.6%</span> · MTD <span class="pos">+8.4%</span> · YTD <span class="pos">+9.1% (EUR)</span></span></div>
+<div class="ticker"><span class="t-name">TDIV (EUR)</span>&euro;52.33 <span class="t-chg">7d <span class="neg">&minus;1.8%</span> · MTD <span class="pos">+2.8%</span> · YTD <span class="pos">+9.7%</span></span></div>
 </div>
 </div>
 </section>
 
-<!-- ALERT BANNER -->
+<!-- SECTION 2: WEEK IN REVIEW -->
 <section>
-<div class="alert">
-<strong>Hormuz standoff intensifies:</strong> Iran seized two foreign container ships and fired on a third attempting to exit the Strait on Wednesday. Trump ordered the US Navy to destroy any Iranian boats laying mines. Oil at $103+ for a fifth consecutive day of gains. A US-sanctioned supertanker with Iranian crude is reportedly attempting transit this morning.
-</div>
+<div class="section-label">Week in Review</div>
+
+<ul>
+<li>The Strait of Hormuz crisis intensified as Iran reimposed shipping restrictions after a brief ceasefire opening, sending Brent crude up 17% for the week to $105.70.</li>
+<li>European equities sold off broadly, with the STOXX Europe 600 losing 2.5%, as elevated energy costs and geopolitical uncertainty weighed on sentiment.</li>
+<li>The S&amp;P 500 and Nasdaq both closed at record highs on Friday, powered by a <a href="https://www.cnbc.com/2026/04/24/intel-stock-soars-more-than-20percent-as-chipmaker-shows-signs-of-turnaround.html">historic Intel earnings beat</a> that sent the chip sector soaring.</li>
+<li>Consumer confidence cratered: the University of Michigan sentiment index plunged to 47.6, its lowest reading on record, while the German Ifo business climate index fell to 84.4, the weakest since May 2020.</li>
+</ul>
+
+<p>It was a week defined by the widening gap between the US tech rally and the rest of the world. European markets buckled under the weight of the Hormuz standoff: with roughly 20% of global seaborne oil transiting the strait, its effective closure drove energy costs sharply higher and hit European industry disproportionately. Italy, where natural gas accounts for 38% of the energy mix, is especially exposed. The <a href="https://www.cnbc.com/2026/04/21/european-markets-stoxx-600-ftse-dax-cac-iran-latest-oil-prices.html">pan-European selloff</a> was led by France (CAC 40 down 3.2%) and the FTSE 100 (down 2.7%), with defensive sectors like utilities and telecoms outperforming.</p>
+
+<p>Across the Atlantic, the picture was starkly different. Intel's blowout Q1 results, with revenue beating estimates by over $1 billion, triggered a 24% surge in the stock and lifted the entire semiconductor sector. The S&amp;P 500 and Nasdaq closed at fresh records on Friday, even as the Dow slipped 0.4% under pressure from energy-sensitive industrials. The divergence between US tech exceptionalism and European energy vulnerability was the dominant narrative of the week.</p>
 </section>
 
-<!-- OVERNIGHT MARKETS SUMMARY -->
+<!-- SECTION 3: KEY MOVERS -->
 <section>
-<div class="section-label">Overnight Markets</div>
-<ul>
-<li><strong>Oil up for a fifth day</strong> as the US-Iran impasse over Hormuz deepened, with Brent touching $106 intraday before settling near $103.67 (<a href="https://www.bloomberg.com/news/articles/2026-04-23/latest-oil-market-news-and-analysis-for-april-24">Bloomberg</a>).</li>
-<li><strong>Wall Street retreated:</strong> the S&P 500 fell 0.41%, the Nasdaq dropped 0.89% led by a selloff in software stocks, and the Dow shed 180 points (<a href="https://finance.yahoo.com/markets/stocks/live/stock-market-today-thursday-april-23-dow-sp-500-nasdaq-oil-rises-software-233045213.html">Yahoo Finance</a>).</li>
-<li><strong>Gold hit $4,758</strong>, up 0.82%, as safe-haven demand persisted amid geopolitical uncertainty.</li>
-<li><strong>Asia lower:</strong> the Nikkei fell 0.75% to 59,140 as regional markets tracked the Hormuz escalation (<a href="https://www.cnbc.com/2026/04/23/asia-markets-today-nikkei-kospi-hangseng-sensex-asx-iran-trump.html">CNBC</a>).</li>
-</ul>
-<p>The overnight session was dominated by the continuing Hormuz standoff. Iran's seizure of commercial vessels on Wednesday marked a significant escalation, and Trump's threat to "shoot and kill" any boat laying mines added further tension. Markets are pricing in an extended disruption: Brent has risen for five straight sessions and is now up roughly 55% from pre-conflict levels, with the closure affecting roughly 20% of global seaborne oil trade.</p>
+<div class="section-label">Key Movers</div>
 
-<p>European futures opened slightly higher this morning, with the DAX leading gains (+1.27%) as defence-related industrials rallied. The FTSE MIB added 0.50%, though Italian financials remained under pressure. Sterling held steady at $1.3517 ahead of next week's BoE decision, while EUR/USD dipped to 1.1683 as markets digested yesterday's weak eurozone PMI data.</p>
+<div class="story">
+<div class="story-source">CNBC</div>
+<div class="story-headline"><a href="https://www.cnbc.com/2026/04/24/intel-intc-q1-2026-earnings-report.html">Intel Posts Best Day Since 1987, Soaring 24% on AI-Driven Earnings Beat</a></div>
+<ul>
+<li>Q1 revenue of $13.6bn crushed the $12.4bn consensus; adjusted EPS of $0.29 vs $0.02 expected. AI-driven data centre revenue surged 40% year-over-year.</li>
+<li>The rally rippled across semiconductors: AMD rose 14%, Broadcom gained 11%, and Nvidia added 5%. Intel has now beaten guidance for six consecutive quarters.</li>
+<li>The stock is up 74% year-to-date, reclaiming levels not seen since 2000. Foundry services showed early traction, adding to the turnaround narrative.</li>
+</ul>
+</div>
+
+<div class="story">
+<div class="story-source">Fortune / Goldman Sachs</div>
+<div class="story-headline"><a href="https://fortune.com/2026/04/25/iran-war-peace-deal-maritime-trench-warfare-naval-blockade-strait-of-hormuz-oil/">Hormuz Standoff Enters "Maritime Trench Warfare" Phase as Negotiations Collapse</a></div>
+<ul>
+<li>Trump cancelled envoy deployment to Pakistan for indirect talks with Iran on Saturday, after Iran's top diplomat left Islamabad. Brent surged 17% on the week to $105.70.</li>
+<li>Iran reimposed strait restrictions after a brief opening on 17 April. Trump ordered the Navy to "shoot and kill" Iranian boats laying mines, escalating the confrontation.</li>
+<li>Goldman Sachs outlined three scenarios ranging from "sloppy peace" to prolonged blockade. The IEA has called this the largest supply disruption in oil market history.</li>
+</ul>
+</div>
+
+<div class="story">
+<div class="story-source">CNBC</div>
+<div class="story-headline"><a href="https://www.cnbc.com/2026/04/16/ecb-interest-rates-hike-inflation-iran-washington.html">ECB Warns of "Layer Cake of Shocks" as Rate Path Becomes Uncertain</a></div>
+<ul>
+<li>ECB President Lagarde acknowledged that elevated energy costs have pushed the eurozone off its baseline trajectory but gave no signal of imminent rate action.</li>
+<li>Markets now price two 25bp hikes (down from three) for 2026, with a hold expected at the April 30 meeting. The deposit rate remains at 2.00%.</li>
+<li>The German Ifo index at 84.4 underlines the tension: the ECB faces stagflationary pressures, with growth weakening and energy-driven inflation re-accelerating.</li>
+</ul>
+</div>
+
+<div class="story">
+<div class="story-source">CNBC / Yahoo Finance</div>
+<div class="story-headline"><a href="https://www.cnbc.com/2026/04/23/stock-market-today-live-updates.html">S&amp;P 500 and Nasdaq Close at Record Highs as DOJ Drops Powell Probe</a></div>
+<ul>
+<li>The S&amp;P 500 closed at 7,166, up 0.8% on Friday, while the Nasdaq hit 24,837. The DOJ's decision to drop its investigation of Fed Chair Powell removed a source of institutional uncertainty.</li>
+<li>Nvidia reclaimed a $5 trillion market capitalisation. The Dow, however, fell 0.2% as oil-sensitive industrial names dragged.</li>
+<li>The tech-heavy rally masked underlying fragility: the VIX fell to 18.71, but breadth was narrow, concentrated in semiconductors and mega-cap tech.</li>
+</ul>
+</div>
 </section>
 
-<!-- TOP 5 MACRO STORIES -->
+<!-- SECTION 4: PORTFOLIO REVIEW -->
 <section>
-<div class="section-label">Top 5 Macro Stories</div>
+<div class="portfolio">
+<div class="section-label">Portfolio Review</div>
 
-<div class="story">
-<div class="story-headline"><a href="https://www.pmi.spglobal.com/Public/Home/PressRelease/89d5df92554f42589275c1d9ddb5fde3">Eurozone Composite PMI Contracts Sharply to 48.6 in April</a></div>
-<div class="story-source">S&P Global / Trading Economics</div>
-<ul>
-<li>Composite PMI fell to 48.6 from 50.7 in March, well below the 50.2 consensus and marking the steepest contraction since November 2024.</li>
-<li>Manufacturing bucked the trend, rising to 52.2 (from 51.6), with new export orders growing at the fastest pace in four years.</li>
-<li>Output price inflation hit a 37-month high as energy costs fed through supply chains.</li>
-</ul>
-<div class="portfolio-note">Portfolio note: Confirms stagflationary pressure in the eurozone. The divergence between manufacturing strength and services weakness is notable for the ECB's June decision.</div>
-</div>
+<p><strong>Bond side:</strong> It was a difficult week for Italian government debt. The BTP 10-year yield edged up to 3.8% as the Hormuz escalation drove energy prices higher, raising the spectre of <a href="https://tradingeconomics.com/italy/government-bond-yield">ECB rate hikes</a> rather than cuts. The BTP-Bund spread, which had compressed to 59bp in January, has widened back toward 110bp as markets reprice Italian fiscal vulnerability to energy shocks. Short-duration and T-bill holdings provided their usual ballast, holding value as the curve steepened at the long end.</p>
 
-<div class="story">
-<div class="story-headline"><a href="https://www.bloomberg.com/news/articles/2026-04-24/ecb-to-hike-in-june-before-reversing-course-in-2027-poll-shows">ECB Expected to Hike in June Before Reversing Course in 2027</a></div>
-<div class="story-source">Bloomberg</div>
-<ul>
-<li>A Bloomberg poll of analysts shows the ECB will raise rates once in June, then reverse the move in 2027 to protect growth.</li>
-<li>The main refinancing rate stands at 2.15%, deposit facility at 2.0%. The next meeting is April 29-30 (hold expected).</li>
-<li>Inflation forecasts were revised up to 2.6% for 2026 due to energy prices from the Iran war.</li>
-</ul>
-<div class="portfolio-note">Portfolio note: A June hike would widen BTP spreads further. Watch the April 29-30 meeting for forward guidance signals.</div>
-</div>
-<div class="story">
-<div class="story-headline"><a href="https://www.cnbc.com/2026/04/23/iran-war-strait-hormuz-tanker-traffic-oil.html">Hormuz Naval Standoff Deepens as Iran Seizes Ships, Trump Threatens Force</a></div>
-<div class="story-source">CNBC / Bloomberg</div>
-<ul>
-<li>Iran captured two foreign container ships and fired on a third attempting to exit the Strait on Wednesday, marking the most aggressive escalation in weeks.</li>
-<li>Trump ordered the US Navy to "shoot and kill" any boat laying mines, while declaring "total control" of the waterway.</li>
-<li>Brent crude rose for a fifth consecutive day, trading between $101.55 and $106.08 intraday. US shale bosses are <a href="https://www.ft.com/content/273c0321-0678-4ac0-9ccc-432301865b4c">resisting calls to boost output</a>, citing uncertainty over how long high prices will hold.</li>
-</ul>
-<div class="portfolio-note">Portfolio note: Brent at $103+ directly affects European energy costs and Italian gas dependency. The standoff shows no sign of resolution.</div>
-</div>
+<p><strong>Equity side:</strong> VOO gained 0.6% in dollar terms for the week, driven by Friday's tech surge. However, the euro strengthened roughly 0.8% against the dollar over the same period (EUR/USD at 1.1720), meaning the real return in euro terms was approximately flat. TDIV, heavily weighted toward European and global dividend payers, fell an estimated 1.8% for the week, underperforming the broader market as energy costs hit dividend-heavy sectors like industrials and financials. The divergence between US growth stocks and European value/dividend stocks was unusually stark.</p>
 
-<div class="story">
-<div class="story-headline"><a href="https://www.ft.com/content/91bba1e2-525d-47ee-ae03-b710388deb56">UK Consumer Confidence Falls to Lowest in Two Years as Borrowing Surges</a></div>
-<div class="story-source">Financial Times</div>
-<ul>
-<li>Consumer confidence hit its lowest level in more than two years, with higher inflation from the Iran war darkening the outlook for spending and growth.</li>
-<li>Public sector borrowing reached &pound;12.6bn in March as energy-stoked inflation pushed up government borrowing costs (<a href="https://www.ft.com/content/6dfa7e3c-e2b7-476d-bbb6-b68672a04de0">FT</a>).</li>
-<li>UK CPI rose to 3.3% in March, well above the BoE's 2% target, complicating the case for rate cuts.</li>
-</ul>
-<div class="portfolio-note">Portfolio note: Sterling held at $1.3517 but faces downside risk if the BoE signals an extended pause next week. GBP/EUR cross-rate affects daily spending.</div>
-</div>
-
-<div class="story">
-<div class="story-headline"><a href="https://www.cnbc.com/2026/04/22/fed-chair-kevin-warsh.html">Warsh Signals Rate Cut Ambitions at Confirmation Hearing, Trump Demands Action</a></div>
-<div class="story-source">CNBC / Fortune</div>
-<ul>
-<li>Kevin Warsh, Trump's nominee for Fed Chair, told the Senate he would maintain independence, saying the president "never once asked me to commit to any particular interest rate decision."</li>
-<li>However, Warsh argued the economy's potential is "growing quite quickly" and that AI-driven productivity gains could give the Fed room to cut rates.</li>
-<li>Trump said he would be "disappointed" if Warsh does not lower rates immediately upon confirmation. Markets expect the FOMC to hold at its upcoming meeting.</li>
-</ul>
+<p><strong>Net assessment:</strong> The 50/50 split provided limited cushion this week. Bonds softened on rate hike expectations and wider spreads, while the equity side split: VOO held up in USD but was eroded by EUR strength, and TDIV fell with the European market. Both legs of the portfolio faced headwinds from the same source, the energy shock. When the dominant risk is a supply-side oil disruption, diversification between bonds and equities offers less protection than usual.</p>
 </div>
 </section>
-<!-- FROM THE WIRES -->
+
+<!-- SECTION 5: NUMBER OF THE WEEK -->
 <section>
-<div class="section-label">From the Wires</div>
-
-<div style="margin-bottom: 12px;">
-<div class="story-source">Financial Times</div>
-<ul>
-<li><a href="https://www.ft.com/content/b5e276b2-9ec6-47d5-bf2f-49f7f52c6d10">A vibe check from commodities pros</a> — Plus UK inflation data analysis</li>
-<li><a href="https://www.ft.com/content/273c0321-0678-4ac0-9ccc-432301865b4c">US shale bosses resist boosting oil output over Iran war 'chaos'</a> — Dallas Fed survey finds executives not confident high prices will hold</li>
-<li><a href="https://www.ft.com/content/e5d1fe19-0768-4962-b5f2-88926336c1b5">Vanguard chief warns of 'financial exploitation' by prediction markets</a> — Boss of $12tn asset manager criticises Polymarket and Kalshi</li>
-<li><a href="https://www.ft.com/content/f0209b31-f3c7-44d4-9dcd-ff6569d9b071">UK business activity rose more than expected in April</a> — Companies rushed to make purchases amid fears Iran war would push prices higher</li>
-<li><a href="https://www.ft.com/content/aa7b9fe2-662b-42a4-b9b4-1f6675a30519">Under Warsh, the Fed could embrace Bessent's geoeconomic agenda</a> — Treasury secretary wants to use swap lines to lock in dollar supremacy</li>
-</ul>
-</div>
-
-<div style="margin-bottom: 12px;">
-<div class="story-source">Bloomberg</div>
-<ul>
-<li><a href="https://www.bloomberg.com/news/articles/2026-04-24/us-sanctioned-supertanker-with-iranian-oil-tries-hormuz-transit">US-sanctioned supertanker with Iranian oil tries Hormuz transit</a> — Tanker traffic otherwise at a virtual standstill</li>
-<li><a href="https://www.bloomberg.com/news/articles/2026-04-24/byd-geely-see-more-ev-demand-as-oil-prices-climb-from-iran-war">BYD, Geely see more EV demand as oil prices climb</a> — China's automakers poised to benefit from the energy shock</li>
-<li><a href="https://www.bloomberg.com/news/articles/2026-04-23/trump-s-iran-shifts-spotlight-washington-s-insider-trade-threat">Trump's Iran pivots spotlight Washington's insider trade threat</a> — Oil volatility at levels not seen since Covid-19</li>
-<li><a href="https://www.bloomberg.com/news/articles/2026-04-24/philippine-central-bank-head-signals-series-of-modest-rate-hikes">Philippine central bank signals series of modest rate hikes</a> — Responding to oil shock spillover on inflation</li>
-</ul>
-</div>
-
-<div>
-<div class="story-source">MarketWatch / Other</div>
-<ul>
-<li><a href="https://www.cnbc.com/2026/04/23/strait-hormuz-closure-alternative-routes-middle-east-oil-gas-pipelines.html">The Strait of Hormuz: alternative routes for oil exporters</a> — CNBC maps out pipeline alternatives</li>
-<li><a href="https://www.bloomberg.com/news/articles/2026-04-23/brazil-seeks-new-measures-to-tame-war-impact-on-fuels">Brazil seeks new measures to tame war impact on fuels</a> — Government to ask Congress for fuel tax cuts</li>
-</ul>
+<div class="watch-box">
+<div class="section-label">Number of the Week</div>
+<div class="big-number">+17%</div>
+<p>Brent crude's weekly gain, its sharpest since the initial Hormuz closure in February. This is the single most consequential data point for Marco's portfolio: it pressures ECB rate expectations (widening BTP spreads), erodes European equity valuations (hitting TDIV), and strengthens the euro against the dollar (reducing VOO returns in EUR terms). One number, three transmission channels. <a href="https://tradingeconomics.com/commodity/brent-crude-oil">Source: Trading Economics</a></p>
 </div>
 </section>
-<!-- CENTRAL BANK WATCH -->
+
+<!-- PART 2: WEEK AHEAD -->
+<div class="part-divider">Week Ahead</div>
+
+<!-- SECTION 6: WEEK AHEAD OVERVIEW -->
+<section>
+<div class="section-label">Week Ahead Overview</div>
+
+<ul>
+<li><strong>Central bank bonanza:</strong> The Fed (Apr 28-29), ECB (Apr 30), and BoE (Apr 30) all announce rate decisions, alongside the Bank of Japan and Bank of Canada. All are expected to hold, but forward guidance will be closely parsed for energy-driven inflation signals.</li>
+<li><strong>GDP and inflation flashpoint:</strong> Thursday 30 April delivers US Q1 GDP (advance), US PCE, eurozone flash GDP, and eurozone flash CPI in a single session. These readings will define the macro narrative for May.</li>
+<li><strong>Hormuz diplomacy:</strong> With Trump cancelling Pakistan talks on Saturday, markets will watch for any resumption of indirect US-Iran negotiations. Oil prices are likely to remain elevated and volatile.</li>
+<li><strong>Earnings tail:</strong> Tech earnings continue with Apple and Amazon expected to report. Any weakness could test the narrow rally breadth.</li>
+</ul>
+
+<p>The macro backdrop entering the week is tense. Consumer confidence is at record lows on both sides of the Atlantic (UofM at 47.6, GfK at -25), yet equity markets sit at or near records. Central banks face a common dilemma: energy-driven inflation argues for tighter policy, but collapsing confidence and geopolitical uncertainty argue for caution. Thursday's data dump will be the week's decisive moment. <a href="https://www.litefinance.org/blog/analysts-opinions/weekly-economic-calendar-for-27042026-03052026/">LiteFinance week-ahead preview</a></p>
+</section>
+
+<!-- SECTION 7: DATA CALENDAR -->
+<section>
+<div class="section-label">Data Calendar</div>
+<table>
+<thead>
+<tr><th>Date</th><th>Release</th><th>Consensus</th><th>Why It Matters</th></tr>
+</thead>
+<tbody>
+<tr><td>Tue 28 Apr</td><td><a href="https://tradingeconomics.com/united-states/consumer-confidence">US CB Consumer Confidence (Apr)</a></td><td>~86.0</td><td>Tests whether the UofM collapse is confirmed in the Conference Board's measure. A miss could weigh on the dollar.</td></tr>
+<tr><td>Wed 29 Apr</td><td><a href="https://tradingeconomics.com/germany/inflation-cpi">Germany CPI (Apr, prelim)</a></td><td>~2.4% y/y</td><td>First read on eurozone April inflation. Energy pass-through from the oil spike is the key question for ECB pricing.</td></tr>
+<tr><td>Wed 29 Apr</td><td><a href="https://www.cnbc.com/2026/04/24/fed-likely-to-hold-rates-steady-april-consumer-impact.html">Fed Rate Decision</a></td><td>Hold 3.50-3.75%</td><td>Hold expected, but the statement and Powell's presser will signal how the Fed weighs oil-driven inflation vs growth risks.</td></tr>
+<tr><td>Thu 30 Apr</td><td><a href="https://tradingeconomics.com/euro-area/gdp-growth">Eurozone GDP (Q1, flash)</a></td><td>~0.2% q/q</td><td>First look at whether the energy shock has tipped the eurozone toward stagnation. Critical for ECB forward guidance.</td></tr>
+<tr><td>Thu 30 Apr</td><td><a href="https://tradingeconomics.com/euro-area/inflation-cpi">Eurozone CPI (Apr, flash)</a></td><td>~2.6% y/y</td><td>The ECB's target variable. A surprise above 2.5% would solidify expectations for a June hike.</td></tr>
+<tr><td>Thu 30 Apr</td><td><a href="https://www.bea.gov/news/schedule">US GDP (Q1, advance)</a></td><td>~3.5% q/q ann.</td><td>Expected to show robust pre-shock growth. The market will look through this to Q2 signals.</td></tr>
+<tr><td>Thu 30 Apr</td><td><a href="https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting">US PCE Price Index (Mar)</a></td><td>~2.8% y/y</td><td>The Fed's preferred inflation gauge. Energy costs likely pushed core higher, complicating the rate outlook.</td></tr>
+<tr><td>Thu 30 Apr</td><td><a href="https://ecb-watch.eu/">ECB Rate Decision</a></td><td>Hold 2.00%</td><td>Hold priced in, but Lagarde's press conference will be parsed for any hawkish shift on energy-driven inflation.</td></tr>
+<tr><td>Thu 30 Apr</td><td><a href="https://hoa.org.uk/news/interest-rate-predictions-2/">BoE Rate Decision</a></td><td>Hold 3.75%</td><td>Expected hold. Markets watching for any split in the MPC vote and language on UK energy cost pass-through.</td></tr>
+<tr><td>Fri 1 May</td><td><a href="https://tradingeconomics.com/united-states/business-confidence">US ISM Manufacturing PMI (Apr)</a></td><td>~49.5</td><td>Key gauge of whether the manufacturing sector is contracting. Sub-50 would signal recession risk.</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- SECTION 8: CENTRAL BANK WATCH -->
 <section>
 <div class="section-label">Central Bank Watch</div>
 <div class="cb-grid">
 <div class="cb-cell">
-<div class="cb-bank">European Central Bank</div>
-<div class="cb-rate">2.15%</div>
+<div class="cb-bank">ECB</div>
+<div class="cb-rate">2.00%</div>
 <div class="cb-detail">
-Main refinancing rate. Deposit facility at 2.0%.<br>
-<strong>Next decision:</strong> 29-30 April (hold expected).<br>
-Markets pricing a hike in June. Inflation forecast raised to 2.6% for 2026.<br>
-<a href="https://www.ecb.europa.eu/press/pr/date/2026/html/ecb.mp260319~3057739775.en.html">Latest statement</a> ·
-<a href="https://www.cnbc.com/2026/04/16/ecb-interest-rates-hike-inflation-iran-washington.html">CNBC analysis</a>
+Next decision: <strong>30 Apr 2026</strong><br>
+Hold expected. Markets price two hikes by year-end.<br>
+Lagarde press conference post-decision.<br>
+<a href="https://ecb-watch.eu/">ECB Watch probabilities</a>
 </div>
 </div>
 <div class="cb-cell">
 <div class="cb-bank">Bank of England</div>
 <div class="cb-rate">3.75%</div>
 <div class="cb-detail">
-Held since March 2026.<br>
-<strong>Next decision:</strong> 30 April.<br>
-CPI at 3.3% (March), well above 2% target. Rate cuts shelved; JP Morgan sees a possible hike in June.<br>
-<a href="https://www.bankofengland.co.uk/monetary-policy-summary-and-minutes/2026/march-2026">March minutes</a> ·
-<a href="https://hoa.org.uk/news/interest-rate-predictions-2/">Predictions</a>
+Next decision: <strong>30 Apr 2026</strong><br>
+Hold expected despite Iran-driven inflation pressure.<br>
+<a href="https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate">BoE rate page</a>
 </div>
 </div>
 <div class="cb-cell">
 <div class="cb-bank">Federal Reserve</div>
-<div class="cb-rate">4.25-4.50%</div>
+<div class="cb-rate">3.50–3.75%</div>
 <div class="cb-detail">
-On hold. FOMC expected to hold at upcoming meeting.<br>
-<strong>Chair transition:</strong> Kevin Warsh confirmed hearing 21 Apr; signals willingness to cut if productivity growth supports it.<br>
-<a href="https://www.cnbc.com/2026/04/22/fed-chair-kevin-warsh.html">CNBC coverage</a> ·
-<a href="https://fortune.com/2026/04/20/kevin-warsh-rate-cut-yield-balance-sheet-reduction-ideas/">Fortune analysis</a>
+Decision: <strong>28–29 Apr 2026</strong><br>
+Hold overwhelmingly expected. Rate cuts pushed back to late 2026.<br>
+Powell presser Wed 29 Apr.<br>
+<a href="https://www.cnbc.com/2026/04/24/fed-likely-to-hold-rates-steady-april-consumer-impact.html">CNBC preview</a>
 </div>
 </div>
 </div>
 </section>
-<!-- EUROZONE AND PORTFOLIO -->
+
+<!-- SECTION 9: GEOPOLITICAL RISKS -->
 <section>
-<div class="section-label">Eurozone &amp; Portfolio Focus</div>
+<div class="section-label">Geopolitical Risks</div>
 <ul>
-<li><strong>EUR/USD at 1.1683</strong>, slipping from last week's highs near 1.1835 as the weak PMI print weighed on the single currency. A June ECB hike is largely priced in, but the deteriorating growth picture complicates the outlook.</li>
-<li><strong>FTSE MIB at 46,078 (+0.50%)</strong>, recovering slightly this morning after Wednesday's 0.2% decline. Italian financials remain under pressure (UniCredit -1.6%, Intesa -0.8% on Wednesday). Italy's acute gas dependency, with natural gas comprising 38% of its energy mix and the country being the EU's top Persian Gulf LNG importer, makes it especially vulnerable to the Hormuz closure.</li>
-<li><strong>BTP-Bund spread</strong> has widened from January's tight level of 59bps as stagflation fears grow. The 10-year BTP yield stands at approximately 3.8%, with the 30-year at 4.66%. A June ECB hike would add further pressure to Italian sovereign debt costs.</li>
+<li><strong>Strait of Hormuz:</strong> Trump cancelled Pakistan talks on Saturday. Any resumption or further escalation (mine-laying, naval confrontation) could swing oil prices 10%+ in either direction. <a href="https://www.cnbc.com/2026/04/20/us-iran-war-middle-east-conflict-peace-deal-strait-hormuz-shipping-ceasefire-tensions.html">CNBC</a></li>
+<li><strong>Iran naval confrontation:</strong> Trump's order to "shoot and kill" Iranian boats laying mines raises the risk of a direct US-Iran military engagement in the strait. An incident could spike Brent well above $110. <a href="https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis">Wikipedia overview</a></li>
+<li><strong>Lebanon ceasefire extension:</strong> Israel and Lebanon agreed to extend their ceasefire by three weeks. If it holds, one less variable for regional oil risk. If it collapses, the conflict widens. <a href="https://www.cnbc.com/2026/04/15/us-strait-of-hormuz-blockade-navy-iran-seaborne-trade-oil-trump.html">CNBC</a></li>
+<li><strong>Trump vs Powell:</strong> The DOJ dropped its probe of Fed Chair Powell, but the broader political pressure on the Fed remains. Any renewed threats to Fed independence could unsettle bond markets. <a href="https://www.upi.com/Top_News/US/2026/04/22/jerome-powell-trump-federal-reserve-chair-investigation/7511776867847/">UPI</a></li>
 </ul>
-<p>The eurozone is caught between resilient manufacturing and collapsing services activity. The April composite PMI at 48.6 signals contraction, yet manufacturing new export orders are at four-year highs, likely reflecting front-loading of purchases before further price increases. Germany's decision to halve its 2026 growth forecast to 0.5%, explicitly citing the Hormuz closure, underscores the bloc's vulnerability. For Italian assets specifically, the combination of energy exposure, widening spreads, and an ECB leaning hawkish presents a challenging near-term backdrop.</p>
 </section>
 
-<!-- DATA POINT TO WATCH + SESSION OUTLOOK -->
+<!-- SECTION 10: ANALYTICAL THEME -->
 <section>
-<div class="section-label">Data Point to Watch</div>
-<div class="watch-box">
-<div class="story-source">Today, 13:30 BST</div>
-<div class="big-number">US Durable Goods Orders</div>
-<p style="font-size: 13px; margin-top: 6px;">Advance durable goods data for March will be closely watched for signs of business investment resilience amid the Iran war uncertainty. The <a href="https://www.kiplinger.com/investing/economy/this-weeks-economic-calendar">University of Michigan consumer sentiment (final)</a>, due at 15:00 BST, is also key: the preliminary reading showed sentiment at an all-time low.</p>
+<div class="theme">
+<div class="section-label">Analytical Theme: The Stagflation Trap for European Portfolios</div>
+<p>The core challenge for any European-based investor with transatlantic exposure is that the current energy shock is simultaneously stagflationary for Europe and largely neutral for the US. The S&amp;P 500 can rally on tech earnings even as Brent crude trades above $100, because US energy self-sufficiency insulates its economy. Europe has no such buffer. The ECB faces a genuine dilemma: hike to contain energy-driven inflation and risk tipping a weakening economy into recession, or hold and allow inflation expectations to drift upward. For a 50/50 portfolio split between euro government bonds and equity (half US, half European dividend), this creates a pernicious correlation problem. The same shock that pressures BTP spreads wider (ECB hike expectations) also weakens TDIV (European equity selloff) and erodes VOO returns (EUR strength vs USD). The traditional diversification benefit of holding both bonds and equities breaks down when the dominant risk is a supply-side energy disruption affecting all asset classes through different channels. The question for the coming weeks is whether diplomacy can provide an off-ramp, or whether the portfolio needs tactical adjustment to reduce this correlation exposure. <a href="https://www.dallasfed.org/~/media/documents/research/papers/2026/wp2609.pdf">Dallas Fed working paper on the 2026 oil shock</a></p>
 </div>
-
-<p><strong>Session outlook:</strong> European markets are set for a cautious open after yesterday's mixed session. The DAX's strong futures (+1.27%) reflect defence and industrial buying, but the weak eurozone PMI will weigh on sentiment. Watch for reactions to any fresh Hormuz developments, particularly whether the US-sanctioned supertanker attempting transit this morning triggers an incident.</p>
-
-<p>In the US session, durable goods and Michigan sentiment will set the tone. Markets are in a holding pattern ahead of next week's packed calendar: the ECB meets April 29-30, the BoE decides April 30, and further Warsh confirmation proceedings are expected. Oil remains the swing factor. Any hint of resumed US-Iran talks would trigger a sharp reversal in crude, while further escalation could push Brent toward $110.</p>
 </section>
-<!-- FOOTER -->
+
+<!-- SECTION 11: PORTFOLIO OUTLOOK -->
+<section>
+<div class="portfolio">
+<div class="section-label">Portfolio Outlook</div>
+<p><strong>Bonds:</strong> Thursday is the pivotal session. If eurozone flash CPI comes in above 2.5% and GDP is soft, the ECB's press conference could turn hawkish, widening BTP spreads further. A dovish surprise (CPI at or below consensus, GDP resilient) would compress spreads and benefit the bond allocation. The short-duration T-bill/overnight position should remain stable regardless.</p>
+<p><strong>VOO:</strong> The Fed decision on Wednesday and US Q1 GDP on Thursday will set the tone. Strong GDP but hot PCE could push the dollar higher short-term (helping EUR-denominated VOO returns), but the medium-term trend of EUR strength (from 1.04 in January to 1.17 now) remains a significant headwind. If Apple and Amazon disappoint, the narrow rally breadth could reverse sharply.</p>
+<p><strong>TDIV:</strong> European dividend stocks face a hostile week. If eurozone GDP is weak and CPI is high, the stagflation narrative intensifies, hitting precisely the kind of mature, capital-intensive firms that dominate TDIV. The new ex-US variant of the TDIV family (<a href="https://www.newscase.com/vaneck-rolls-out-irish-domiciled-dividend-etf-as-flagship-fund-nears-e8-7bn/">launched 22 April</a>) may be worth monitoring as a future diversification tool if European headwinds persist.</p>
+</div>
+</section>
+
 <footer>
-Morning Briefing · Dr Marco Scalvini · 24 April 2026 · Generated by Claude via Cowork
+Weekend Briefing · Dr Marco Scalvini · 26 April 2026 · Generated by Claude via Cowork · <a href="https://scalvini.github.io/briefing/">scalvini.github.io/briefing</a>
 </footer>
 
 </body>
