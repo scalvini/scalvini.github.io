@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hotel Offer Scanner &mdash; 4&plus; Stars</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  :root {
+    --bg: #fafaf7;
+    --ink: #0D1D32;
+    --muted: #6A727C;
+    --line: #d9d9d3;
+    --accent: #0066cc;
+    --accent-hover: #00ccff;
+    --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 1.45; padding: 2rem 1rem 4rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  header h1 { font-family: Georgia, "Times New Roman", serif; font-size: 2rem; margin: 0 0 0.25rem; font-weight: 600; }
+  header p { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+
+  form.controls { background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 1rem 1.25rem; display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); align-items: end; margin-bottom: 1.5rem; }
+  form.controls label { display: flex; flex-direction: column; font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  form.controls input, form.controls select {
+    margin-top: 0.3rem; padding: 0.5rem 0.6rem; font-size: 1rem; border: 1px solid var(--line); border-radius: 5px;
+    background: #fff; color: var(--ink); font-family: inherit; }
+  form.controls input:focus, form.controls select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .summary { font-size: 0.9rem; color: var(--muted); margin: 0 0 1rem; }
+  .summary strong { color: var(--ink); }
+
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .city { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+  .city h3 { margin: 0 0 0.1rem; font-size: 1.15rem; font-family: Georgia, "Times New Roman", serif; font-weight: 600; }
+  .city .country { color: var(--muted); font-size: 0.8rem; margin-bottom: 0.75rem; }
+  .city .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .city .links a {
+    display: block; text-align: center; padding: 0.5rem 0.4rem; font-size: 0.85rem;
+    border: 1px solid var(--line); border-radius: 5px; text-decoration: none; color: var(--ink);
+    background: #fafafa; transition: all 0.15s ease; }
+  .city .links a:hover { border-color: var(--accent); color: var(--accent); background: #fff; }
+  .city .links a.full { grid-column: 1 / -1; }
+
+  .stars { color: #d4a017; letter-spacing: 0.1em; font-size: 0.9rem; }
+
+  .add-city { margin-top: 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+  .add-city input { padding: 0.5rem 0.6rem; font-size: 0.95rem; border: 1px solid var(--line); border-radius: 5px; flex: 1 1 200px; }
+  .add-city button { padding: 0.55rem 1rem; font-size: 0.9rem; border: 1px solid var(--accent); background: var(--accent); color: #fff; border-radius: 5px; cursor: pointer; }
+  .add-city button:hover { background: #004fa3; }
+  .city .remove { float: right; border: none; background: none; color: var(--muted); cursor: pointer; font-size: 0.75rem; padding: 0; }
+  .city .remove:hover { color: #c0392b; }
+
+  footer { margin-top: 3rem; font-size: 0.8rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 1rem; }
+
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.75rem 3rem; }
+    header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Hotel Offer Scanner</h1>
+  <p>Live offers <span class="stars">&#9733;&#9733;&#9733;&#9733;</span> 4&plus; star hotels &mdash; one click opens pre-filtered searches across multiple providers.</p>
+</header>
+
+<form class="controls" id="controls" onsubmit="return false;">
+  <label>Check-in
+    <input type="date" id="checkin" />
+  </label>
+  <label>Check-out
+    <input type="date" id="checkout" />
+  </label>
+  <label>Adults
+    <select id="adults">
+      <option>1</option><option selected>2</option><option>3</option><option>4</option>
+    </select>
+  </label>
+  <label>Rooms
+    <select id="rooms">
+      <option selected>1</option><option>2</option><option>3</option>
+    </select>
+  </label>
+  <label>Min stars
+    <select id="stars">
+      <option value="4" selected>4&plus;</option>
+      <option value="5">5 only</option>
+    </select>
+  </label>
+</form>
+
+<p class="summary" id="summary"></p>
+
+<div class="grid" id="grid"></div>
+
+<div class="add-city">
+  <input type="text" id="newCity" placeholder="Add a city (e.g. Prague, Czech Republic)" />
+  <button id="addBtn">Add city</button>
+  <button id="resetBtn" style="background:#fff;color:var(--muted);border-color:var(--line);">Reset list</button>
+</div>
+
+<footer>
+  Offers fetched live from each provider when you click. Dates and guest count are remembered in this browser.
+  Filters: 4+ stars (or 5-only), selected dates and occupancy.
+</footer>
+
+</div>
+
+<script>
+  const DEFAULT_CITIES = [
+    { name: "London",    country: "United Kingdom" },
+    { name: "Paris",     country: "France" },
+    { name: "Rome",      country: "Italy" },
+    { name: "Madrid",    country: "Spain" },
+    { name: "Berlin",    country: "Germany" },
+    { name: "Amsterdam", country: "Netherlands" },
+    { name: "Vienna",    country: "Austria" },
+    { name: "Lisbon",    country: "Portugal" }
+  ];
+
+  const STORAGE = {
+    cities: "hs_cities_v1",
+    checkin: "hs_checkin",
+    checkout: "hs_checkout",
+    adults: "hs_adults",
+    rooms: "hs_rooms",
+    stars: "hs_stars"
+  };
+
+  const $ = (id) => document.getElementById(id);
+
+  function loadCities() {
+    try {
+      const raw = localStorage.getItem(STORAGE.cities);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return DEFAULT_CITIES.slice();
+  }
+  function saveCities(list) { localStorage.setItem(STORAGE.cities, JSON.stringify(list)); }
+
+  function todayPlus(days) {
+    const d = new Date();
+    d.setDate(d.getDate() + days);
+    return d.toISOString().slice(0, 10);
+  }
+
+  function initDefaults() {
+    $("checkin").value  = localStorage.getItem(STORAGE.checkin)  || todayPlus(30);
+    $("checkout").value = localStorage.getItem(STORAGE.checkout) || todayPlus(33);
+    $("adults").value   = localStorage.getItem(STORAGE.adults)   || "2";
+    $("rooms").value    = localStorage.getItem(STORAGE.rooms)    || "1";
+    $("stars").value    = localStorage.getItem(STORAGE.stars)    || "4";
+  }
+
+  function persistInputs() {
+    localStorage.setItem(STORAGE.checkin,  $("checkin").value);
+    localStorage.setItem(STORAGE.checkout, $("checkout").value);
+    localStorage.setItem(STORAGE.adults,   $("adults").value);
+    localStorage.setItem(STORAGE.rooms,    $("rooms").value);
+    localStorage.setItem(STORAGE.stars,    $("stars").value);
+  }
+
+  // Build pre-filtered offer URLs per provider.
+  function buildLinks(city, params) {
+    const q = encodeURIComponent(city.name);
+    const qFull = encodeURIComponent(city.name + ", " + city.country);
+    const ci = params.checkin;
+    const co = params.checkout;
+    const adults = params.adults;
+    const rooms = params.rooms;
+    const minStars = parseInt(params.stars, 10);
+
+    // Booking.com — nflt class filter: class=4 / class=5 separated by ';'
+    const bookingFilter = minStars === 5 ? "class%3D5" : "class%3D4%3Bclass%3D5";
+    const booking = `https://www.booking.com/searchresults.html?ss=${q}&checkin=${ci}&checkout=${co}&group_adults=${adults}&no_rooms=${rooms}&nflt=${bookingFilter}`;
+
+    // Hotels.com — star=4,5
+    const hotelsStar = minStars === 5 ? "5" : "4,5";
+    const hotelsCom = `https://www.hotels.com/Hotel-Search?destination=${qFull}&startDate=${ci}&endDate=${co}&rooms=${rooms}&adults=${adults}&star=${hotelsStar}&sort=RECOMMENDED`;
+
+    // Kayak — fs=stars=40 (4+) or 50 (5 only)
+    const kayakStars = minStars === 5 ? "50" : "40";
+    const kayakCity = encodeURIComponent(city.name.toLowerCase().replace(/\s+/g, "-"));
+    const kayak = `https://www.kayak.com/hotels/${kayakCity}/${ci}/${co}/${adults}-adults/${rooms}-rooms?sort=rank_a&fs=stars%3D${kayakStars}`;
+
+    // Trivago
+    const trivago = `https://www.trivago.com/en-US/srl?search=200-${q}&aDateRange%5Barr%5D=${ci}&aDateRange%5Bdep%5D=${co}&iRoomType=7&aRooms%5B0%5D%5Badults%5D=${adults}`;
+
+    // Google Hotels
+    const googleHotels = `https://www.google.com/travel/hotels/${q}?q=4%20star%20hotels%20in%20${q}&hl=en&checkin=${ci}&checkout=${co}`;
+
+    // Expedia
+    const expediaStar = minStars === 5 ? "50" : "40,50";
+    const expedia = `https://www.expedia.com/Hotel-Search?destination=${qFull}&startDate=${ci}&endDate=${co}&adults=${adults}&rooms=${rooms}&star=${expediaStar}&sort=RECOMMENDED`;
+
+    return [
+      { label: "Booking.com",   url: booking },
+      { label: "Hotels.com",    url: hotelsCom },
+      { label: "Expedia",       url: expedia },
+      { label: "Kayak",         url: kayak },
+      { label: "Trivago",       url: trivago },
+      { label: "Google Hotels", url: googleHotels, full: true }
+    ];
+  }
+
+  function getParams() {
+    return {
+      checkin:  $("checkin").value,
+      checkout: $("checkout").value,
+      adults:   $("adults").value,
+      rooms:    $("rooms").value,
+      stars:    $("stars").value
+    };
+  }
+
+  function render() {
+    persistInputs();
+    const cities = loadCities();
+    const params = getParams();
+    const grid = $("grid");
+    grid.innerHTML = "";
+
+    if (!params.checkin || !params.checkout || params.checkin >= params.checkout) {
+      $("summary").innerHTML = "<strong>Pick valid check-in &amp; check-out dates to enable offer links.</strong>";
+    } else {
+      const nights = Math.round((new Date(params.checkout) - new Date(params.checkin)) / 86400000);
+      const starLabel = params.stars === "5" ? "5-star only" : "4&plus; stars";
+      $("summary").innerHTML = `Scanning <strong>${cities.length}</strong> cities &middot; <strong>${nights}</strong> night${nights===1?"":"s"} &middot; <strong>${params.adults}</strong> adult${params.adults==="1"?"":"s"}, <strong>${params.rooms}</strong> room${params.rooms==="1"?"":"s"} &middot; <span class="stars">&#9733;</span> ${starLabel}`;
+    }
+
+    cities.forEach((city, idx) => {
+      const card = document.createElement("div");
+      card.className = "city";
+      const links = buildLinks(city, params);
+      card.innerHTML = `
+        <button class="remove" title="Remove" data-idx="${idx}">&#x2715; remove</button>
+        <h3>${city.name}</h3>
+        <div class="country">${city.country}</div>
+        <div class="links">
+          ${links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer"${l.full ? ' class="full"' : ''}>${l.label}</a>`).join("")}
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    grid.querySelectorAll(".remove").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const list = loadCities();
+        list.splice(parseInt(btn.dataset.idx, 10), 1);
+        saveCities(list);
+        render();
+      });
+    });
+  }
+
+  function addCity() {
+    const raw = $("newCity").value.trim();
+    if (!raw) return;
+    const parts = raw.split(",").map(s => s.trim());
+    const name = parts[0];
+    const country = parts[1] || "";
+    const list = loadCities();
+    list.push({ name, country });
+    saveCities(list);
+    $("newCity").value = "";
+    render();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initDefaults();
+    render();
+    ["checkin","checkout","adults","rooms","stars"].forEach(id => {
+      $(id).addEventListener("change", render);
+    });
+    $("addBtn").addEventListener("click", addCity);
+    $("newCity").addEventListener("keydown", (e) => { if (e.key === "Enter") addCity(); });
+    $("resetBtn").addEventListener("click", () => {
+      if (confirm("Reset to default city list?")) {
+        localStorage.removeItem(STORAGE.cities);
+        render();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
