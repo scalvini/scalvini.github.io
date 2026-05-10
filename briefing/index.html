@@ -3,170 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekend Briefing — 10 May 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Weekend Market Briefing — May 10, 2026</title>
 <style>
-:root {
-  --bg: #0f1117;
-  --surface: #181b24;
-  --border: #262a36;
-  --text: #e4e4e7;
-  --muted: #9ca3af;
-  --accent: #6366f1;
-  --green: #22c55e;
-  --red: #ef4444;
-  --amber: #f59e0b;
-  --blue: #3b82f6;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; padding: 2rem 1rem; }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; color: #0a0a0a; background: #ffffff; max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+header { padding-bottom: 16px; border-bottom: 3px solid #0a0a0a; margin-bottom: 32px; }
+header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+header .meta { font-size: 12px; color: #888; margin-top: 3px; }
+section { border-top: 1px solid #e5e5e5; padding: 24px 0; }
+.section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 14px; }
+</style>
+<style>
+.part-divider { border-top: 3px solid #0a0a0a; margin: 8px 0; padding-top: 28px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #888; }
+.ticker-block { margin-bottom: 10px; }
+.ticker-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 6px; }
+.ticker-row { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.ticker { font-family: 'DM Mono', monospace; font-size: 12px; }
+.ticker .t-name { color: #888; display: block; font-size: 10px; }
+.ticker .t-chg { font-size: 11px; margin-left: 2px; }
+.pos { color: #16a34a; }
+.neg { color: #dc2626; }
+ul { margin: 8px 0 12px 18px; }
+ul li { font-size: 14px; margin-bottom: 4px; padding-left: 4px; }
+ul li::marker { color: #888; }
+.story { padding: 16px 0; border-top: 1px solid #e5e5e5; }
+.story:first-child { border-top: none; padding-top: 0; }
+.story-headline { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.story-headline a { color: #0a0a0a; text-decoration: none; }
+.story-source { font-size: 11px; color: #888; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+a { color: #2563eb; text-decoration: none; }
+p { font-size: 14px; margin-bottom: 10px; }
+</style>
+<style>
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; text-align: left; padding: 7px 10px; border-bottom: 2px solid #0a0a0a; }
+td { padding: 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
+td:first-child { font-family: 'DM Mono', monospace; font-size: 12px; white-space: nowrap; }
+.cb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1px; background: #e5e5e5; border: 1px solid #e5e5e5; }
+.cb-cell { background: #fff; padding: 14px; }
+.cb-bank { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 4px; }
+.cb-rate { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; margin-bottom: 6px; }
+.cb-detail { font-size: 12px; color: #444; line-height: 1.5; }
+.portfolio { background: #f7f7f7; padding: 18px; }
+.watch-box { background: #f7f7f7; padding: 14px; }
+.watch-box .big-number { font-family: 'DM Mono', monospace; font-size: 24px; font-weight: 500; margin: 6px 0 4px; }
+.theme { background: #f7f7f7; padding: 18px; }
+footer { padding-top: 16px; border-top: 1px solid #e5e5e5; font-size: 11px; color: #888; margin-top: 8px; }
+@media (max-width: 600px) { body { padding: 20px 14px; } .cb-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-<style>
-.wrap { max-width: 760px; margin: 0 auto; }
-header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
-header h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
-header .date { font-family: 'DM Mono', monospace; color: var(--muted); font-size: 0.85rem; margin-top: 0.25rem; }
-h2 { font-size: 1.15rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin: 2.25rem 0 0.75rem; }
-h2:first-of-type { margin-top: 0; }
-p { margin-bottom: 0.85rem; color: var(--text); font-size: 0.95rem; }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; }
-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-bottom: 0.5rem; }
-th { text-align: left; color: var(--muted); font-weight: 500; padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
-td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); }
-tr:last-child td { border-bottom: none; }
-.mono { font-family: 'DM Mono', monospace; font-size: 0.85rem; }
-.up { color: var(--green); }
-.down { color: var(--red); }
-.flat { color: var(--muted); }
-.tag { display: inline-block; font-size: 0.72rem; font-family: 'DM Mono', monospace; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 500; }
-.tag-hold { background: rgba(245,158,11,0.15); color: var(--amber); }
-.tag-hike { background: rgba(239,68,68,0.15); color: var(--red); }
-.tag-cut { background: rgba(34,197,94,0.15); color: var(--green); }
-.footnote { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2.5rem; }
-.divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
-.section-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
-</style>
+<!-- HEADER + TICKERS -->
 <header>
-  <h1>Weekend Briefing</h1>
-  <div class="date">Sunday 10 May 2026 · Week 19</div>
+<h1>Weekend Market Briefing</h1>
+<div class="meta">Week of May 4–10, 2026 · compiled Sunday 10 May · Dr Marco Scalvini</div>
 </header>
 
-<div class="section-label">Part I — Week in Review (4–9 May)</div>
-
-<h2>1. The Big Picture</h2>
-<p>A volatile week dominated by the US–Iran conflict. Monday opened with a sell-off after the UAE intercepted Iranian missiles, pushing Brent above $116 and the Dow down 557 points. By mid-week a fragile ceasefire framework emerged, crushing crude back toward $101 and igniting a furious equity rally. Strong tech earnings — AMD crossed a $713 billion market cap — propelled the Nasdaq to six consecutive weekly gains (+4.5% on the week), while the S&amp;P 500 closed at a fresh all-time high of 7,399. In Europe, the FTSE MIB outperformed (+2.2%) on energy-cost relief, though the FTSE 100 ended lower (−1.3%) as Shell and BP dragged. The macro backdrop is increasingly conflicted: labour markets remain robust (strong US April payrolls), but inflation is re-accelerating on energy, leaving central banks frozen.</p>
-
-<h2>2. Equity Indices</h2>
-<div class="card">
+<section>
+<div class="ticker-block">
+<div class="ticker-label">Equities — Weekly Change</div>
+<div class="ticker-row">
+<div class="ticker"><span class="t-name">S&P 500</span>7,398.93 <span class="t-chg pos">+2.3%</span></div>
+<div class="ticker"><span class="t-name">Nasdaq</span>26,247 <span class="t-chg pos">+4.5%</span></div>
+<div class="ticker"><span class="t-name">STOXX 600</span>568 <span class="t-chg pos">+0.7%</span></div>
+<div class="ticker"><span class="t-name">DAX</span>23,412 <span class="t-chg pos">+0.2%</span></div>
+<div class="ticker"><span class="t-name">FTSE 100</span>8,541 <span class="t-chg neg">−1.3%</span></div>
+<div class="ticker"><span class="t-name">FTSE MIB</span>38,920 <span class="t-chg pos">+2.2%</span></div>
+<div class="ticker"><span class="t-name">Nikkei 225</span>62,834 <span class="t-chg pos">+5.0%</span></div>
+<div class="ticker"><span class="t-name">Hang Seng</span>22,480 <span class="t-chg pos">+0.4%</span></div>
+</div>
+</div>
+<div class="ticker-block">
+<div class="ticker-label">Portfolio Holdings</div>
+<div class="ticker-row">
+<div class="ticker"><span class="t-name">VOO</span>$678.04 <span class="t-chg pos">+2.3%</span></div>
+<div class="ticker"><span class="t-name">TDIV.AS</span>€48.59 <span class="t-chg pos">+0.2%</span></div>
+</div>
+</div>
+<div class="ticker-block">
+<div class="ticker-label">FX · Commodities · Rates</div>
+<div class="ticker-row">
+<div class="ticker"><span class="t-name">EUR/USD</span>1.177 <span class="t-chg pos">+0.5%</span></div>
+<div class="ticker"><span class="t-name">GBP/USD</span>1.362 <span class="t-chg pos">+0.4%</span></div>
+<div class="ticker"><span class="t-name">Gold</span>$4,720 <span class="t-chg pos">+2.1%</span></div>
+<div class="ticker"><span class="t-name">Brent</span>$100.45 <span class="t-chg neg">−13.8%</span></div>
+<div class="ticker"><span class="t-name">BTP 10Y</span>3.73% <span class="t-chg neg">−1bp</span></div>
+<div class="ticker"><span class="t-name">Bund 10Y</span>2.68% <span class="t-chg neg">−3bp</span></div>
+</div>
+</div>
+</section>
+<!-- WEEK IN REVIEW -->
+<section>
+<div class="section-label">Week in Review</div>
+<p>A dramatic week defined by two duelling forces: collapsing oil prices as US-Iran peace talks gained traction, and fresh transatlantic trade tensions after Trump threatened "much higher" tariffs on the EU with a July 4 deadline. The net result was strongly positive for risk assets — the S&P 500 posted its sixth consecutive weekly gain to a new all-time high, while the Nikkei surged 5% to a record 62,000+. European equities were more mixed; the FTSE 100 lost ground on energy-sector weakness, while Italy's MIB outperformed on tightening spreads and solid domestic earnings.</p>
+<p>Brent crude plunged nearly 14% from Monday's $116.55 to $100.45 by Friday as markets priced in a potential reopening of the Strait of Hormuz. Gold rallied 2% to $4,720/oz on safe-haven demand and lower real rates. In FX, the euro and sterling both recovered against the dollar, helped by a risk-on rotation and a US court ruling that questioned the legal basis of Trump's tariff authority.</p>
+</section>
+<!-- KEY MOVERS -->
+<section>
+<div class="section-label">Key Movers &amp; Stories</div>
+<div class="story">
+<div class="story-source">Geopolitics / Energy</div>
+<div class="story-headline">Brent Crude Drops 14% on Iran Peace Hopes</div>
+<p>US-Iran negotiations progressed through the week, raising expectations for a partial reopening of the Strait of Hormuz. Brent fell from $116 to $100, its sharpest weekly decline since the conflict began in February. Energy stocks lagged broader indices.</p>
+</div>
+<div class="story">
+<div class="story-source">Trade Policy</div>
+<div class="story-headline">Trump Sets July 4 Deadline for EU Tariff Escalation</div>
+<p>The president threatened to raise auto tariffs to 25% if the EU fails to ratify the July 2025 trade deal. European automakers sold off mid-week before a US court ruling questioning tariff legality provided some relief on Friday.</p>
+</div>
+<div class="story">
+<div class="story-source">US Equities / AI</div>
+<div class="story-headline">Nasdaq Surges 4.5% — AI Infrastructure Leads</div>
+<p>Chip stocks powered the rally as AI capex spending data continued to surprise to the upside. SoftBank surged 18% in Tokyo on its AI fund performance. The S&P 500 hit a fresh record at 7,399.</p>
+</div>
+<div class="story">
+<div class="story-source">US Labour</div>
+<div class="story-headline">April NFP: +115k, Unemployment Steady at 4.3%</div>
+<p>The jobs report beat expectations and was taken as a Goldilocks print — strong enough to avoid recession fears, soft enough to keep the door open for eventual Fed cuts. Markets rallied on the release.</p>
+</div>
+</section>
+<!-- PORTFOLIO REVIEW -->
+<section>
+<div class="section-label">Portfolio Review</div>
+<div class="portfolio">
 <table>
-<tr><th>Index</th><th>Close</th><th>Week</th></tr>
-<tr><td>S&amp;P 500</td><td class="mono">7,398.93</td><td class="mono up">+2.3%</td></tr>
-<tr><td>Nasdaq Composite</td><td class="mono">26,247.08</td><td class="mono up">+4.5%</td></tr>
-<tr><td>Dow Jones</td><td class="mono">49,609.16</td><td class="mono up">+0.2%</td></tr>
-<tr><td>Euro Stoxx 50</td><td class="mono">6,027.13</td><td class="mono up">+2.7%</td></tr>
-<tr><td>DAX</td><td class="mono">—</td><td class="mono up">+0.2%</td></tr>
-<tr><td>CAC 40</td><td class="mono">—</td><td class="mono flat">~flat</td></tr>
-<tr><td>FTSE MIB</td><td class="mono">—</td><td class="mono up">+2.2%</td></tr>
+<thead><tr><th>Sleeve</th><th>Holding</th><th>Week</th><th>Comment</th></tr></thead>
+<tbody>
+<tr><td>Equity (25%)</td><td>VOO (S&P 500)</td><td class="pos">+2.3%</td><td>New ATH at $678; sixth straight weekly gain. EUR-hedged return slightly lower (~+1.8%) due to EUR strength.</td></tr>
+<tr><td>Equity (25%)</td><td>TDIV.AS</td><td class="pos">+0.2%</td><td>Modest gain; FTSE-heavy holdings dragged by energy weakness. Yield 3.83% remains attractive.</td></tr>
+<tr><td>Fixed Income (50%)</td><td>Euro Govt / BTP</td><td style="color:#16a34a">+0.1%</td><td>BTP 10Y eased 1bp to 3.73%. Spread ~105bp, near cycle lows. Duration exposure helped as bonds bid on oil decline.</td></tr>
+</tbody>
 </table>
+<p style="margin-top:12px;font-size:13px;"><strong>Estimated blended weekly return: +0.9%</strong> — equity sleeve drove gains; fixed income contributed modestly via price appreciation on lower energy-driven inflation expectations.</p>
 </div>
-<div class="card">
+</section>
+<!-- NUMBER OF THE WEEK -->
+<section>
+<div class="section-label">Number of the Week</div>
+<div class="watch-box">
+<div class="ticker-label">Brent Weekly Decline</div>
+<div class="big-number neg">−13.8%</div>
+<p style="font-size:13px;margin-top:8px;">The sharpest single-week drop in Brent crude since the Iran conflict began in February. If sustained, this would materially improve the inflation outlook and ease pressure on both the ECB and BoE — directly relevant to your BTP holdings and the path of European rates.</p>
+</div>
+</section>
+
+<!-- WEEK AHEAD OVERVIEW -->
+<section>
+<div class="section-label">Week Ahead — May 11–17</div>
+<p>The coming week is dominated by <strong>US CPI on Tuesday</strong> (consensus: headline +3.7% YoY, core +2.7% YoY) — a hot print could reignite rate-hike fears. The <strong>Senate vote on Kevin Warsh as Fed Chair</strong> is expected around May 15, the day Powell's term officially expires. In Europe, watch for the Eurozone industrial production data (Wednesday) and the UK labour market report (Tuesday). Geopolitically, the Trump-Xi meeting pencilled for mid-May could reshape the China trade outlook.</p>
+</section>
+<!-- DATA CALENDAR -->
+<section>
+<div class="section-label">Data Calendar</div>
 <table>
-<tr><th>Index</th><th>Close</th><th>Week</th></tr>
-<tr><td>FTSE 100</td><td class="mono">10,228</td><td class="mono down">−1.3%</td></tr>
-<tr><td>IBEX 35</td><td class="mono">—</td><td class="mono flat">—</td></tr>
-<tr><td>Nikkei 225</td><td class="mono">62,714</td><td class="mono down">−0.2%</td></tr>
+<thead><tr><th>Date</th><th>Event</th><th>Consensus</th><th>Relevance</th></tr></thead>
+<tbody>
+<tr><td>Tue 12 May</td><td>US CPI (Apr)</td><td>+0.6% m/m, 3.7% y/y</td><td>Key for Fed path; energy impact</td></tr>
+<tr><td>Tue 12 May</td><td>UK Employment Data</td><td>Unemp. 4.5%</td><td>BoE June decision input</td></tr>
+<tr><td>Wed 13 May</td><td>EZ Industrial Production (Mar)</td><td>−0.3% m/m</td><td>Growth outlook for EZ</td></tr>
+<tr><td>Thu 15 May</td><td>US Retail Sales (Apr)</td><td>+0.3% m/m</td><td>Consumer resilience gauge</td></tr>
+<tr><td>Thu 15 May</td><td>Powell term expires / Warsh vote</td><td>—</td><td>Fed leadership transition</td></tr>
+<tr><td>Fri 16 May</td><td>US U. of Michigan Sentiment (May)</td><td>67.5</td><td>Inflation expectations</td></tr>
+</tbody>
 </table>
+</section>
+<!-- CENTRAL BANK WATCH -->
+<section>
+<div class="section-label">Central Bank Watch</div>
+<div class="cb-grid">
+<div class="cb-cell">
+<div class="cb-bank">ECB</div>
+<div class="cb-rate">2.00%</div>
+<div class="cb-detail">Held Apr 30. Discussed a hike "at length." Markets pricing June + July hikes if energy stays elevated. Next meeting: June 5.</div>
 </div>
-
-<h2>3. FX &amp; Commodities</h2>
-<div class="card">
+<div class="cb-cell">
+<div class="cb-bank">Bank of England</div>
+<div class="cb-rate">3.75%</div>
+<div class="cb-detail">Held Apr 30 (8-1 vote; one member voted for +25bp). CPI at 3.3%, above target. Next meeting: June 18.</div>
+</div>
+<div class="cb-cell">
+<div class="cb-bank">Federal Reserve</div>
+<div class="cb-rate">3.50–3.75%</div>
+<div class="cb-detail">Held Apr 29 with 8-4 dissent — most divided since 1992. Powell exits May 15; Warsh confirmation imminent.</div>
+</div>
+</div>
+</section>
+<!-- GEOPOLITICAL RISKS -->
+<section>
+<div class="section-label">Geopolitical Risk Monitor</div>
 <table>
-<tr><th>Pair / Asset</th><th>Last</th><th>Week Δ</th></tr>
-<tr><td>EUR / USD</td><td class="mono">1.1774</td><td class="mono up">+0.8%</td></tr>
-<tr><td>EUR / GBP</td><td class="mono">~0.845</td><td class="mono flat">~flat</td></tr>
-<tr><td>GBP / USD</td><td class="mono">~1.393</td><td class="mono up">+0.7%</td></tr>
-<tr><td>Brent Crude</td><td class="mono">$101.0</td><td class="mono down">−13%</td></tr>
-<tr><td>Gold</td><td class="mono">$4,731</td><td class="mono up">+0.4%</td></tr>
-<tr><td>VIX</td><td class="mono">17.19</td><td class="mono down">−1.2%</td></tr>
+<thead><tr><th>Risk</th><th>Status</th><th>Portfolio Impact</th></tr></thead>
+<tbody>
+<tr><td>Iran / Strait of Hormuz</td><td>Ceasefire talks advancing; partial reopening discussed. Brent −14% this week signals market optimism.</td><td>Positive for BTP (lower inflation), negative for energy-heavy TDIV names.</td></tr>
+<tr><td>US–EU Trade</td><td>Trump's July 4 tariff deadline. EU auto sector exposed. US court challenged tariff authority.</td><td>Risk to European equities (TDIV); may widen peripheral spreads if trade war escalates.</td></tr>
+<tr><td>US–China</td><td>Trump-Xi meeting mid-May. Current 10% reciprocal tariff; Supreme Court blocked broad emergency tariffs.</td><td>Positive resolution would boost global risk appetite and VOO.</td></tr>
+<tr><td>Fed Transition</td><td>Warsh confirmation expected May 15. Market expects dovish pivot under new chair.</td><td>Potentially bullish for both bonds and equities if Warsh signals rate cuts.</td></tr>
+</tbody>
 </table>
+</section>
+<!-- ANALYTICAL THEME -->
+<section>
+<div class="section-label">Analytical Theme</div>
+<div class="theme">
+<p style="font-weight:600;margin-bottom:8px;">The Oil-Inflation Nexus: Why This Week's Brent Move Matters More Than the Jobs Report</p>
+<p>The 14% weekly drop in Brent crude is the single most portfolio-relevant data point this week. Since the Iran conflict began in February, elevated energy costs have been the primary driver of above-target inflation in both the Eurozone (pushing the ECB toward hikes) and the UK (keeping the BoE on hold at 3.75%). If oil stabilises around $100 — still elevated by pre-conflict standards but well below the $130 peak — it changes the calculus fundamentally.</p>
+<p>For your fixed-income sleeve, lower oil means lower breakeven inflation, which supports bond prices and narrows BTP-Bund spreads further. For equities, it relieves margin pressure on non-energy corporates and reduces the probability of ECB hikes that could slow Eurozone growth. The key question for the week ahead: does Tuesday's CPI still reflect the old $115+ oil regime, or is the market already looking through it?</p>
 </div>
-<p>The dollar weakened as the ceasefire dampened safe-haven demand. Sterling hit multi-month highs against the greenback. Brent swung wildly — from $116+ on Monday to $101 by Friday — while gold held above $4,700 as investors hedge persistent inflation risk. The VIX stayed remarkably subdued at 17, suggesting equity investors are treating geopolitical flare-ups as dip-buying opportunities rather than systemic threats.</p>
+</section>
+<!-- PORTFOLIO OUTLOOK -->
+<section>
+<div class="section-label">Portfolio Outlook</div>
+<p><strong>Fixed Income (50%):</strong> Constructive. The oil pullback is unambiguously positive for Euro govts and BTPs. If Iran peace talks hold, the ECB's June hike probability diminishes and duration is rewarded. BTP spreads near 105bp offer carry without excessive credit risk given Italy's improved fiscal trajectory. Main risk: a hot US CPI Tuesday could spill over into European rate expectations.</p>
+<p><strong>Equity — VOO (25%):</strong> Bullish momentum intact with six consecutive weekly gains and record highs. The AI capex cycle shows no signs of exhaustion. Key risk is a Warsh-driven policy surprise or a CPI shock that reprices the rate path. EUR strength (~1.18) acts as a modest headwind on EUR-denominated returns.</p>
+<p><strong>Equity — TDIV.AS (25%):</strong> Mixed outlook. Dividend-focused strategy benefits from financials (higher rates) but suffers from energy exposure in a falling oil environment. The 3.83% yield provides a floor. Watch EU-US trade developments closely — European auto and industrial names are directly in the firing line of Trump's July 4 deadline.</p>
+</section>
+<!-- FOOTER -->
+<footer>
+<p>Weekend Market Briefing · Prepared for Dr Marco Scalvini · Data as of market close Friday 9 May 2026 · Sources: Yahoo Finance, CNBC, Trading Economics, ECB, Federal Reserve, Fortune, justETF · This is not financial advice.</p>
+</footer>
 
-<h2>4. Portfolio Tracker</h2>
-<div class="card">
-<table>
-<tr><th>ETF</th><th>Price</th><th>7d</th><th>MTD</th><th>YTD</th></tr>
-<tr><td>VOO</td><td class="mono">$678.04</td><td class="mono up">+2.3%</td><td class="mono up">+2.8%</td><td class="mono up">+15.4%</td></tr>
-<tr><td>TDIV</td><td class="mono">$112.48</td><td class="mono up">+3.8%</td><td class="mono up">+4.2%</td><td class="mono up">+22.1%</td></tr>
-</table>
-</div>
-<p>Both equity holdings outperformed this week, with TDIV benefiting disproportionately from AMD's surge and broad tech strength. VOO's 52-week range ($529–$679) shows the current price sits near all-time highs. Dividend yield: VOO 1.2%, TDIV 1.8%.</p>
-<h2>5. Central Banks</h2>
-<div class="card">
-<table>
-<tr><th>Bank</th><th>Rate</th><th>Last Move</th><th>Next</th><th>Bias</th></tr>
-<tr><td>ECB</td><td class="mono">2.00%</td><td>Hold (30 Apr)</td><td>5 Jun</td><td><span class="tag tag-hike">Hike priced</span></td></tr>
-<tr><td>BoE</td><td class="mono">3.75%</td><td>Hold (30 Apr)</td><td>18 Jun</td><td><span class="tag tag-hold">Hold</span></td></tr>
-<tr><td>Fed</td><td class="mono">3.50–3.75%</td><td>Hold (29 Apr)</td><td>16–17 Jun</td><td><span class="tag tag-hold">Hold / dovish dissent</span></td></tr>
-</table>
-</div>
-<p>All three major central banks held in April, but the narratives diverge sharply. The ECB discussed a rate hike "at length" as eurozone CPI hit 3% and energy costs remain elevated — markets now fully price three hikes in 2026, possibly starting in June. The BoE held at 3.75% (8–1 vote; one member wanted +25 bp) with UK CPI at 3.3%. The Fed held at 3.50–3.75% but saw historic four-member dissent, with Governor Miran favouring a cut. The Fed also faces a leadership transition: Kevin Warsh's confirmation vote is expected the week of 11 May, and Jerome Powell's chairmanship ends 15 May.</p>
-
-<h2>6. Fixed Income &amp; BTP Spread</h2>
-<div class="card">
-<table>
-<tr><th>Instrument</th><th>Yield</th><th>Δ Week</th></tr>
-<tr><td>Italy 10Y BTP</td><td class="mono">3.80%</td><td class="mono up">+3 bp</td></tr>
-<tr><td>Germany 10Y Bund</td><td class="mono">3.00%</td><td class="mono flat">−1 bp</td></tr>
-<tr><td>BTP–Bund Spread</td><td class="mono">~80 bp</td><td class="mono up">+4 bp</td></tr>
-</table>
-</div>
-<p>The BTP–Bund spread widened modestly to around 80 basis points, up from the extraordinary lows of ~60 bp seen in January. Italy remains especially exposed as Europe's most gas-dependent economy — natural gas comprises 38% of its energy mix and Italy is the EU's top Persian Gulf LNG importer. For the 50% fixed-income allocation, rising yields create reinvestment opportunity but mark-to-market pressure on existing holdings. The spread remains well within the comfort zone but is worth watching if ECB hike rhetoric intensifies.</p>
-<h2>7. Key Stories of the Week</h2>
-<p><strong>US–Iran ceasefire framework.</strong> The week's dominant macro driver. Monday's UAE missile intercept sent Brent above $116 and equities lower. By Wednesday, credible signals of a framework agreement pulled crude back toward $101, but renewed clashes on Thursday cast doubt on durability. Oil ended the week around $101 — down sharply but still elevated versus pre-conflict levels.</p>
-<p><strong>Amazon Supply Chain Services launch.</strong> Amazon unveiled a full-stack logistics business (freight, distribution, fulfilment, parcel shipping). GXO Logistics fell 11%, UPS −10%, FedEx and C.H. Robinson each −9%. A structural threat to the logistics sector.</p>
-<p><strong>AMD breaks $700 billion.</strong> The chipmaker's market cap reached $713 billion after a 20% weekly surge on strong earnings, underscoring continued AI/semiconductor demand.</p>
-<p><strong>US April payrolls beat.</strong> Friday's jobs report topped expectations, reinforcing the "strong labour market + sticky inflation" narrative that keeps the Fed in a holding pattern.</p>
-<p><strong>Trump–EU tariff threats.</strong> The president warned of "much higher" tariffs if the EU doesn't eliminate levies on US goods — a headwind for European exporters and the DAX, which managed only +0.2% on the week.</p>
-
-<hr class="divider">
-<div class="section-label">Part II — Week Ahead (11–16 May)</div>
-
-<h2>8. Data Calendar</h2>
-<div class="card">
-<table>
-<tr><th>Date</th><th>Event</th><th>Consensus</th></tr>
-<tr><td class="mono">Mon 11</td><td>China CPI (Apr)</td><td class="mono">—</td></tr>
-<tr><td class="mono">Mon 11</td><td>Norway CPI (Apr)</td><td class="mono">—</td></tr>
-<tr><td class="mono">Tue 12</td><td>US CPI (Apr) ★</td><td class="mono">3.7% y/y</td></tr>
-<tr><td class="mono">Tue 12</td><td>US Core CPI (Apr)</td><td class="mono">+0.4% m/m</td></tr>
-<tr><td class="mono">Thu 14</td><td>China New Yuan Loans (Apr)</td><td class="mono">—</td></tr>
-<tr><td class="mono">Thu 15</td><td>Powell chairmanship ends</td><td class="mono">—</td></tr>
-</table>
-</div>
-<h2>9. Catalysts &amp; Risks</h2>
-<p><strong>US CPI on Tuesday is the week's marquee release.</strong> Consensus expects 3.7% y/y, which would be the highest print since 2023 and confirm energy's feed-through into broader inflation. A hot number could pull rate-cut expectations further out and pressure equities; a cooler print would be a relief rally catalyst. Core CPI at +0.4% m/m would signal breadth beyond energy.</p>
-<p><strong>Fed leadership transition.</strong> Kevin Warsh's Senate confirmation vote is expected this week. Powell's chairmanship formally ends 15 May, though he'll remain as governor. Any policy-signalling from Warsh during confirmation could move rates.</p>
-<p><strong>Iran ceasefire durability.</strong> The fragile framework remains the wild card. Renewed hostilities could send Brent back above $110 quickly, reversing the week's equity gains and re-widening the BTP spread as Italian energy costs spike.</p>
-
-<h2>10. Portfolio Positioning Notes</h2>
-<p><strong>Fixed income (50%):</strong> The BTP spread at ~80 bp is manageable but warrants attention. If the ECB signals a June hike more strongly, short-duration BTPs may underperform. Consider whether maturing bonds should be rolled into shorter tenors or inflation-linked BTPi given the 3% CPI backdrop. Rising Bund yields (3.00%) offer a German alternative that was unthinkable two years ago.</p>
-<p><strong>Equity (50% — VOO + TDIV):</strong> Both ETFs are near all-time highs. The six-week S&amp;P winning streak and subdued VIX (17) suggest complacency. Tuesday's CPI is the near-term binary event — a beat could trigger a 1–2% pullback. TDIV's tech-heavy, dividend-paying profile has been a sweet spot in 2026 (+22% YTD), but concentration in semiconductors introduces sector-specific risk if the AI capex cycle slows.</p>
-
-<h2>11. Eurozone Macro Snapshot</h2>
-<p>Eurozone inflation at 3% is now meaningfully above the ECB's 2% target, driven primarily by energy. The ECB's April press conference revealed an unusual level of internal debate about hiking — a sharp pivot from the easing bias of late 2025. Growth risks are tilted to the downside as the Iran conflict disrupts energy supply chains and Trump's tariff threats cloud the export outlook. Italy is the most vulnerable member state given its gas dependency and fiscal constraints ahead of 2027 elections. The labour market remains resilient across the bloc, complicating the ECB's calculus.</p>
-<h2>12. Bottom Line</h2>
-<p>Markets shrugged off a geopolitical scare and rallied hard on tech earnings and ceasefire hopes, but the inflation picture is deteriorating. Tuesday's US CPI print is the week's defining event — a hot number would validate the ECB's hawkish pivot and challenge the equity rally's foundation. The portfolio's barbell structure (Italian govt bonds + US tech-heavy equity) is well-positioned if the ceasefire holds and inflation stabilises, but vulnerable to a scenario where energy costs re-surge, widening the BTP spread while compressing equity multiples. Key watchpoint: if Brent reclaims $110, consider trimming equity exposure and extending BTP duration locks.</p>
-
-<div class="footnote">
-  <p>Prepared for Dr Marco Scalvini · London / Italy portfolio · Sunday 10 May 2026<br>
-  Data sourced from CNBC, Yahoo Finance, Trading Economics, ECB, BoE, Federal Reserve, Fortune, Kiplinger. Figures as of market close 9 May 2026 where available. This briefing is for informational purposes only and does not constitute financial advice.</p>
-</div>
-
-</div>
 </body>
 </html>
