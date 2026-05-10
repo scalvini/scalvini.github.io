@@ -3,246 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekend Briefing — 10 May 2026</title>
+<title>Dr Marco Scalvini &middot; Briefing</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; color: #0a0a0a; background: #ffffff; max-width: 860px; margin: 0 auto; padding: 40px 24px; }
-header { padding-bottom: 16px; border-bottom: 3px solid #0a0a0a; margin-bottom: 32px; }
-header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-header .meta { font-size: 12px; color: #888; margin-top: 3px; }
-section { border-top: 1px solid #e5e5e5; padding: 24px 0; }
-.section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #888; margin-bottom: 14px; }
-.part-divider { border-top: 3px solid #0a0a0a; margin: 8px 0; padding-top: 28px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #888; }
-</style>
-<style>
-.ticker-block { margin-bottom: 10px; }
-.ticker-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 6px; }
-.ticker-row { display: flex; flex-wrap: wrap; gap: 4px 20px; }
-.ticker { font-family: 'DM Mono', monospace; font-size: 12px; }
-.ticker .t-name { color: #888; display: block; font-size: 10px; }
-.ticker .t-chg { font-size: 11px; margin-left: 2px; }
-.pos { color: #16a34a; }
-.neg { color: #dc2626; }
-ul { margin: 8px 0 12px 18px; }
-ul li { font-size: 14px; margin-bottom: 4px; padding-left: 4px; }
-ul li::marker { color: #888; }
-ul li a { color: #2563eb; text-decoration: none; }
-.story { padding: 16px 0; border-top: 1px solid #e5e5e5; }
-.story:first-child { border-top: none; padding-top: 0; }
-.story-headline { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-.story-headline a { color: #0a0a0a; text-decoration: none; }
-.story-source { font-size: 11px; color: #888; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-a { color: #2563eb; text-decoration: none; }
-p { font-size: 14px; margin-bottom: 10px; }
-</style>
-<style>
-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
-th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; text-align: left; padding: 7px 10px; border-bottom: 2px solid #0a0a0a; }
-td { padding: 10px; border-bottom: 1px solid #e5e5e5; vertical-align: top; }
-td:first-child { font-family: 'DM Mono', monospace; font-size: 12px; white-space: nowrap; }
-.cb-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1px; background: #e5e5e5; border: 1px solid #e5e5e5; }
-.cb-cell { background: #fff; padding: 14px; }
-.cb-bank { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 4px; }
-.cb-rate { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; margin-bottom: 6px; }
-.cb-detail { font-size: 12px; color: #444; line-height: 1.5; }
-.cb-detail a { color: #2563eb; }
-.portfolio { background: #f7f7f7; padding: 18px; }
-.watch-box { background: #f7f7f7; padding: 14px; }
-.watch-box .big-number { font-family: 'DM Mono', monospace; font-size: 24px; font-weight: 500; margin: 6px 0 4px; }
-.theme { background: #f7f7f7; padding: 18px; }
-footer { padding-top: 16px; border-top: 1px solid #e5e5e5; font-size: 11px; color: #888; margin-top: 8px; }
-@media (max-width: 600px) { body { padding: 20px 14px; } .cb-grid { grid-template-columns: 1fr 1fr; } }
+body { font-family: "DM Sans", sans-serif; background: #ffffff; color: #0a0a0a; }
+#lock-screen {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 24px;
+}
+#lock-screen h1 {
+  font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 32px;
+}
+.lock-icon { font-size: 36px; margin-bottom: 16px; opacity: 0.25; }
+.input-group { display: flex; gap: 8px; margin-bottom: 12px; }
+.input-group input[type="password"] {
+  font-family: "DM Sans", sans-serif; font-size: 14px;
+  padding: 10px 16px; border: 2px solid #e5e5e5; border-radius: 6px;
+  outline: none; width: 220px; transition: border-color 0.2s;
+}
+.input-group input:focus { border-color: #0a0a0a; }
+.input-group button {
+  font-family: "DM Sans", sans-serif; font-size: 14px; font-weight: 600;
+  padding: 10px 24px; background: #0a0a0a; color: #fff;
+  border: none; border-radius: 6px; cursor: pointer; transition: opacity 0.2s;
+}
+.input-group button:hover { opacity: 0.8; }
+.error { color: #d00; font-size: 13px; height: 20px; margin-top: 4px; }
+#briefing-content { display: none; }
 </style>
 </head>
 <body>
-<header>
-<h1>Weekend Briefing</h1>
-<div class="meta">Sunday 10 May 2026 · 6:00 PM BST</div>
-</header>
-
-<section>
-<div class="section-label">Market Snapshot · Week ending 9 May 2026</div>
-
-<div class="ticker-block">
-<div class="ticker-label">Europe</div>
-<div class="ticker-row">
-<div class="ticker"><span class="t-name">STOXX 600</span>617 <span class="t-chg neg">−1.0%</span></div>
-<div class="ticker"><span class="t-name">EURO STOXX 50</span>5,973 <span class="t-chg neg">−0.9%</span></div>
-<div class="ticker"><span class="t-name">FTSE 100</span>8,842 <span class="t-chg neg">−1.4%</span></div>
-<div class="ticker"><span class="t-name">DAX</span>24,180 <span class="t-chg neg">−0.7%</span></div>
+<div id="lock-screen">
+  <div class="lock-icon">&#128274;</div>
+  <h1>Dr Marco Scalvini &middot; Briefing</h1>
+  <div class="input-group">
+    <input type="password" id="pwd" placeholder="Password" autocomplete="off" autofocus>
+    <button onclick="unlock()">Unlock</button>
+  </div>
+  <div class="error" id="err"></div>
 </div>
-</div>
-
-<div class="ticker-block">
-<div class="ticker-label">US / Asia</div>
-<div class="ticker-row">
-<div class="ticker"><span class="t-name">S&P 500</span>7,399 <span class="t-chg pos">+2.3%</span></div>
-<div class="ticker"><span class="t-name">Nasdaq</span>19,820 <span class="t-chg pos">+4.5%</span></div>
-<div class="ticker"><span class="t-name">Nikkei 225</span>62,713 <span class="t-chg pos">+5.4%</span></div>
-<div class="ticker"><span class="t-name">Shanghai Comp</span>4,180 <span class="t-chg pos">+1.7%</span></div>
-</div>
-</div>
-<div class="ticker-block">
-<div class="ticker-label">FX / Commodities</div>
-<div class="ticker-row">
-<div class="ticker"><span class="t-name">EUR/USD</span>1.1774 <span class="t-chg pos">+0.8%</span></div>
-<div class="ticker"><span class="t-name">EUR/GBP</span>0.8412 <span class="t-chg neg">−0.2%</span></div>
-<div class="ticker"><span class="t-name">Brent Crude</span>$101.0 <span class="t-chg neg">−13.3%</span></div>
-<div class="ticker"><span class="t-name">Gold</span>$4,715 <span class="t-chg pos">+3.3%</span></div>
-</div>
-</div>
-
-<div class="ticker-block">
-<div class="ticker-label">Portfolio</div>
-<div class="ticker-row">
-<div class="ticker"><span class="t-name">VUAA.AS</span>€109.4 <span class="t-chg pos">+1.5% wk</span> · <span class="t-chg pos">+2.8% MTD</span> · <span class="t-chg pos">+11.2% YTD</span></div>
-<div class="ticker"><span class="t-name">TDIV.AS</span>€52.10 <span class="t-chg pos">+0.6% wk</span> · <span class="t-chg pos">+1.1% MTD</span> · <span class="t-chg pos">+9.7% YTD</span></div>
-</div>
-</div>
-</section>
-<section>
-<div class="section-label">Week in Review</div>
-
-<ul>
-<li><strong>Europe underperformed sharply</strong> as renewed Strait of Hormuz skirmishes hit energy-sensitive sectors. STOXX 600 fell 1.0% to 617 despite strong UniCredit earnings (+16% YoY profit). FTSE 100 lagged at −1.4%, dragged by oil-exposed majors repricing downward on Brent's collapse from $117 to $101.</li>
-<li><strong>US equities powered to new records</strong> with the S&P 500 posting a sixth consecutive winning week (+2.3%), closing at 7,399. Nasdaq surged 4.5% on AI/tech momentum. Corning (+18%) led after an Nvidia supply deal; Nvidia itself gained 8.4%.</li>
-<li><strong>The Nikkei hit a record 62,834 on May 7</strong>, surpassing 62,000 for the first time, fuelled by US-Iran deal optimism and a weak yen. It pared gains Friday (62,713) on renewed Hormuz tensions.</li>
-<li><strong>Oil collapsed mid-week</strong> from $117 to $100 after US-Iran ceasefire signals, before stabilising near $101-104. This was the sharpest weekly decline since the war began in February, though the Strait remains partially closed.</li>
-</ul>
-
-<p>The dominant theme was a transatlantic divergence: US markets pushed to all-time highs on strong earnings (84% beat rate for Q1, well above the 10-year average of 76%) and AI investment enthusiasm, while European bourses suffered from geopolitical proximity to the Middle East conflict and ECB hawkishness. The partial reopening of Hormuz trade routes sent Brent crashing mid-week, relieving some inflationary pressure but hitting European energy equities. Gold held above $4,700, reflecting persistent demand for haven assets despite risk-on behaviour in US tech.</p>
-</section>
-<section>
-<div class="section-label">Key Movers</div>
-
-<div class="story">
-<div class="story-source">Geopolitics / Energy</div>
-<div class="story-headline">Iran Ceasefire Tested as Hormuz Shots Fired</div>
-<ul>
-<li>Month-long ceasefire holds but both sides exchanged fire in the Strait of Hormuz on May 7-8</li>
-<li>Trump pushing for diplomatic offramp; Iran reviewing US proposal for uranium shipment to US</li>
-<li>Brent crude fell from $117 to $101 on partial de-escalation hopes; Strait remains partially closed since February</li>
-<li>Net effect: energy inflation relief in the near term, but fragile; renewed escalation risk persists</li>
-</ul>
-</div>
-
-<div class="story">
-<div class="story-source">US Equities / AI</div>
-<div class="story-headline">S&P 500 Hits 7,399; AI Rally Broadens Ahead of Nvidia Earnings</div>
-<ul>
-<li>Sixth straight weekly gain for S&P 500, longest streak since 2024; new ATH at 7,401 intraday</li>
-<li>Corning surged 18% on $20B revenue target and Nvidia supply agreement</li>
-<li>Goldman Sachs reiterates Buy on Nvidia ahead of May 20 earnings (consensus: $78.8B revenue, +79% YoY)</li>
-<li>Memory chip stocks broadly lifted; AI capex narrative intact</li>
-</ul>
-</div>
-
-<div class="story">
-<div class="story-source">Central Banks / Rates</div>
-<div class="story-headline">ECB Holds, But Hike Debate Intensifies; Powell Era Ends</div>
-<ul>
-<li>ECB held deposit rate at 2.00% on Apr 30; Lagarde revealed hike was debated. Markets pricing June/July hikes</li>
-<li>Fed held at 3.50-3.75% in April meeting; 4 dissenters (most since 1992). Powell's final meeting before Warsh takes over May 15</li>
-<li>BoE steady at 3.75% with UK CPI at 3.3%; next decision June 18</li>
-<li>Divergence: ECB hawkish pivot vs. Fed on hold creates EUR strength</li>
-</ul>
-</div>
-</section>
-<section>
-<div class="section-label">Portfolio Review</div>
-<div class="portfolio">
-<p><strong>Bond / Safe side:</strong> BTP-Bund spread remains compressed near 60-65 bps, a remarkable level reflecting Italy's credit upgrade cycle through 2025. Italy 10Y yield at 3.73% is constructive for the BTP 2032 holding (€449K nominal). However, the ECB's hawkish tilt introduces upside risk to yields: if the ECB hikes in June, expect modest mark-to-market pressure on the BTP, though coupon income remains secure. The €2.9M monetary/cash component benefits directly from any ECB hike through higher deposit and short-term bond yields.</p>
-<p><strong>Equity side:</strong> VUAA gained ~1.5% in EUR terms for the week, dampened by EUR/USD strength (the euro gained 0.8% vs the dollar). TDIV rose ~0.6%, underperforming as European dividend stocks faced headwinds from geopolitical uncertainty. The S&P 500 hitting new highs is unambiguously positive for the DCA trajectory, though it means no trigger levels are approaching.</p>
-<p><strong>Net assessment:</strong> Favourable week. Equity side tracking well; bond side stable with tightening spreads. EUR strength modestly headwinds USD exposure but ECB hikes would boost safe-side yield.</p>
-</div>
-</section>
-
-<section>
-<div class="section-label">Number of the Week</div>
-<div class="watch-box">
-<div class="big-number">84%</div>
-<p>S&P 500 companies beating EPS estimates in Q1 2026, the highest beat rate in over a decade (vs 76% 10-year average). This earnings quality underpins the case for continued DCA into VUAA at these valuations: the market's record highs are backed by actual profit growth, not just multiple expansion.</p>
-</div>
-</section>
-<div class="part-divider">Part 2 · Week Ahead</div>
-
-<section>
-<div class="section-label">Week Ahead Overview</div>
-<p>The coming week (May 11-15) is dominated by the US April CPI report on Tuesday, which will set the tone for Fed expectations under incoming Chair Warsh. Consensus expects headline CPI at 3.7% YoY (up from 3.3% in March) driven by lagged energy effects from the Iran war, while core CPI is forecast at 2.7% YoY. A hot print could reignite rate-hike pricing and strengthen USD (negative for VUAA in EUR). Markets also watch for any breakdown in the fragile US-Iran ceasefire, which remains the single largest volatility catalyst. Nvidia earnings on May 20 loom as the next major sentiment event for US tech.</p>
-</section>
-
-<section>
-<div class="section-label">Data Calendar</div>
-<table>
-<thead>
-<tr><th>Date</th><th>Event</th><th>Consensus</th><th>Portfolio Relevance</th></tr>
-</thead>
-<tbody>
-<tr><td>Mon 12</td><td>US Existing Home Sales (Apr)</td><td>4.15M</td><td>Low</td></tr>
-<tr><td>Tue 13</td><td>US CPI (Apr) headline YoY</td><td>3.7%</td><td>High: Fed path, USD</td></tr>
-<tr><td>Tue 13</td><td>US CPI core YoY</td><td>2.7%</td><td>High: inflation trend</td></tr>
-<tr><td>Thu 15</td><td>Warsh sworn in as Fed Chair</td><td>—</td><td>Medium: policy signals</td></tr>
-<tr><td>Thu 15</td><td>Eurozone GDP (Q1, 2nd est)</td><td>+0.3% QoQ</td><td>Medium: ECB context</td></tr>
-<tr><td>Fri 16</td><td>US Retail Sales (Apr)</td><td>+0.4% MoM</td><td>Medium: consumer</td></tr>
-<tr><td>Tue 20</td><td>Nvidia Q1 FY27 Earnings</td><td>$78.8B rev</td><td>High: VUAA weight</td></tr>
-</tbody>
-</table>
-</section>
-<section>
-<div class="section-label">Central Bank Watch</div>
-<div class="cb-grid">
-<div class="cb-cell">
-<div class="cb-bank">ECB</div>
-<div class="cb-rate">2.00%</div>
-<div class="cb-detail">Held Apr 30. Hike debated. Markets pricing June hike (~60% probability). Next meeting: 5 Jun.</div>
-</div>
-<div class="cb-cell">
-<div class="cb-bank">Bank of England</div>
-<div class="cb-rate">3.75%</div>
-<div class="cb-detail">Held Apr 30. CPI 3.3% (energy-driven). Economists split on direction. Next meeting: 18 Jun.</div>
-</div>
-<div class="cb-cell">
-<div class="cb-bank">Federal Reserve</div>
-<div class="cb-rate">3.625%</div>
-<div class="cb-detail">Held 3.50-3.75% (Apr 29). 4 dissenters. Warsh takes chair May 15. Next FOMC: 16-17 Jun.</div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="section-label">Geopolitical Risks</div>
-<p><strong>US-Iran:</strong> Ceasefire fragile. Iran reviewing US deal terms (uranium shipment + facility closures). Renewed Hormuz clashes could spike Brent back toward $115-120 within days. <strong>Israel-Lebanon:</strong> IDF strikes continue; Hezbollah rocket exchanges ongoing. <strong>US-China:</strong> Tariff regime stable for now but watch for Warsh's early signals on trade policy. <strong>Portfolio exposure:</strong> Oil spike = inflation = ECB hike acceleration = EUR strength = VUAA drag in EUR terms. This remains the primary downside scenario.</p>
-</section>
-<section>
-<div class="section-label">Analytical Theme</div>
-<div class="theme">
-<p><strong>The ECB Hawkish Pivot: What It Means for Piano Familiare</strong></p>
-<p>The ECB's revelation that a rate hike was discussed at the April meeting is the most consequential development for this portfolio since the Iran war began. For the safe side (€2.9M in monetary/cash/short-term bonds), higher ECB rates are unambiguously positive: each 25bp hike adds roughly €7,250/year in yield on the monetary component. For the BTP 2032 (€449K), higher rates create modest mark-to-market pressure, but the spread compression (59-65 bps) provides a cushion, and coupon income is locked in.</p>
-<p>For the equity side, the picture is more complex. ECB hikes strengthen EUR/USD, which reduces the EUR value of VUAA (denominated in USD). A move from 1.17 to 1.20 on EUR/USD would shave roughly 2.5% off VUAA's EUR return. However, this is a currency translation effect, not a fundamental impairment. The DCA schedule (€220K/month) actually benefits from EUR strength: you buy more USD-denominated equities per euro deployed. The net effect is modestly positive for the accumulation phase.</p>
-</div>
-</section>
-<div class="part-divider">Part 3 · Piano Familiare Monitor</div>
-
-<section>
-<div class="section-label">DCA &amp; Trigger Monitor</div>
-<div class="portfolio">
-<ul>
-<li><strong>S&P 500 current level: 7,399</strong> (closing May 9). New all-time high (intraday record: 7,401). Distance from ATH: 0%. Six consecutive winning weeks. No triggers approaching.</li>
-<li><strong>−15% trigger level: 6,291.</strong> Would require a fall of 1,108 points (−15.0% from 7,401 ATH). Current distance: 15.0% above trigger. Action if breached: double that month's purchases to ~€440K.</li>
-<li><strong>−20% trigger level: 5,921.</strong> Would require a fall of 1,480 points (−20.0% from 7,401 ATH). Current distance: 20.0% above trigger. Action if breached: deploy entire remaining equity budget at once.</li>
-<li><strong>+15% upside threshold: 8,511</strong> (from 7,401 ATH). Distance: +15.0% away. Action: no change, continue DCA as planned. This threshold is informational only.</li>
-<li><strong>EUR/USD at 1.1774</strong> (+0.8% this week). Impact on €159K USD exposure: EUR strength reduces the EUR mark-to-market value by ~€1,100 this week. However, during DCA accumulation phase, EUR strength means more USD purchasing power per euro deployed. Net effect: modestly favourable for new purchases.</li>
-<li><strong>ECB rate at 2.00%, hike expected June.</strong> Impact on €2.9M monetary/cash: current yield ~2.0%. If ECB hikes to 2.25% in June, annualised yield on monetary component rises by ~€7,250/year. Positive for the income target (€150K net/year by Dec 2027).</li>
-<li><strong>BTP-Bund spread: ~60-65 bps.</strong> Italian sovereign risk at multi-year lows. BTP 2032 holding (€449K) well-supported. No action required. Coupon income flows toward December 2026 partial distribution (~€33K target).</li>
-<li><strong>Macro timing factors:</strong> US CPI on May 13 is the key near-term risk. A print above 3.8% could trigger USD strengthening (positive for existing VUAA holdings, negative for new EUR-funded purchases). US midterms (Nov 2026) historically create Q3-Q4 volatility; consider front-loading DCA if summer correction materialises. Nvidia earnings (May 20) could move S&P ±2-3% given 7% index weight.</li>
-</ul>
-<p style="margin-top: 14px; font-weight: 600;">⚠ ACTION ITEMS: None. All triggers well clear. Continue DCA at planned pace (€75K biweekly Fineco + €70K/month Mediolanum). Next Mediolanum manual purchase due mid-May.</p>
-</div>
-</section>
-<footer>
-Weekend Briefing · Dr Marco Scalvini · Piano Familiare · 10 May 2026 · Generated by Claude via Cowork · <a href="https://scalvini.github.io/briefing">scalvini.github.io/briefing</a>
-</footer>
-
+<div id="briefing-content"></div>
+<script>
+var encData = "U2FsdGVkX1+TlfzWmL/Dv03q7VNZ9KsowbuRRDrKXgz+aGfRN22sltzvy1dgOzXRgRZMAQ/mnHDUDZ4VtII92witUg/BFv8v7ltkqdXGAapgib3Ca4YmDHQCeK60611lo559N48TjOBxsyG+AMqF7BscbC664cmO5A8bsk72yjY4X1Kc92fgA59MSgL3dKxHRXAwoaIDS6IvIbLljVaCwm2v2V0tgu3yyHgc8PeCNKYj1N/dpjXUDYhYxN4Ned+ewksXoUXB2+WYBWhfw6TaDLsIMxg281wUKE1fdCEyyTsmtmjO2gxUeKRXMj0blm4XLTk1sl8r8uLlUlb64llkYrvNrXi8sds/dKec33ASjiFjIJisSXGo0CC1vjgpPG1TE1R7x6Llt8ety04njxC+nnoj+nZIRgyBeohh6wIqJtXtADpXwZzQmrRAoEO1XFbKXVCUMeUhJFn58W2PQaU+OYfxu7Xbk13BX8mLeO77JqPctIN0OA7jL5nAs2abQPQx2wNFPjWXs0I+viuLXNm+A5o55GHRT5Ex2Ie2Cp0hy8Kup9DOcHvX61b06FXzpWb7pzkvalLBqFU7GbHtRGBEcXHRClAkusSkvPlY9n8MZivtYCEp1o0Bb9wjBdN6aS52VfCNOU+fXd6xhTjhirprKwYD83PVtC7abeyi73GdJ92jEj1FycWcotja8lW0y4i7e2LP3Eul3wvOqwrmCb4Qu6CobklSqghJfJz+439aPsI0Pvcb0cOnZKIlFv0SM6aMFNVG25x7e/REoxscRrGorHTzxGKgmhUXGavzqg38KazdiA4WaJpEZFi5d109JOOTj9OIY6xBc5XjcWdNX2Xu0mbUcA+hnf6KY6xU3xBoCoNQQL4WyyBm69RQS3Y2zMvZcjAWR7HIicJKXTUJzHXiLAa2zyIQBkzUjg6dcHqrOMJuU3RLoZVLP4sFb0q9eh+gFjCpWYpbp496jI/cCPim358ch9NyrCojphIGEAiJTMpiYe5OaxOmuFQD0Zkl30EEwTQFv2M5aYjvChePf8hBuHbQGJObjPnejSNRvv7Ogf4iOYcOzu9rdIiceh5lOrmH7UiNl53O1kYYMniW6AwM15basvq0klFgjDMBWZ8LoRrytcx+55xPnQuKM+P9J59O/9gof8XVWcPOpkE6ru3s2mR5wSIdpOJNadvglrdKV8mWnpHsN6kjhGFHMB3+y9FxYZsa6Tzt1pL9kI8313cvCX1l3EMUuHi/bkNWjbDimpY0H3y5CkI5gfE77X/GXIfRRMiaPWb9XTbkV+KrDyWlBJGc72/N36pWdrh21GlnDKNfbRjAs/hk/YG4fUNNGYwN53hzbpmqzP5KaWsc3AF9i9sIYWV5QC+5bX/Rd+AMGcmKT+9M71yjkDg2tNbBWgKi/jUhQ0DS6WvyWWNSFi2OrKZfPFQSDPBBNFVDun2GTgs34vjnErGY5vPu8OkMiVmZzsp7SERXMrhpFNtsmRXBnknLGrTaPfoAvJBKLOFrh8uKH7KqH7gMm62FzDG6wFS4CZ6QCgu5BTW6HGBXj6JiQhuoLCFjfJb/NMmB3e25m7d+ADde+ZOmQKdBUIhuCWLfqbb5Z0XoOx1esUn0QgaPWNHlh9cmWKUBRbls3OoPrU8qQqmxZwB4CyFsAsSFb0Wq0ofAq60zGI3qeRbjSt/3ikq/XA91ISjwseGIT/VlsqA4xo1KJm8pBUkFH7N2+0QOHYchanBSea7aPhswYKwxi7sGaCZFGccCzwZURdpDpJsQI9TzkTQsktIeTt83D1w9bALbeHqfZc9wxpUHy0bRhBEXib6nDMvxnVti1CUH/slK5tcuD7DnLREOUwYpnPP0DaW11RWtr0GMywbsAzkc6RZcEJV61aIsV/PaaHZbN2zrA0TnFOcAaVE0fRul9jpMOkUi6xU/+u6xJnVTJBZr2hVjsXR8G6TDFrh8FOhqEnDcXJVwysIZLoJYCHjYm6BjzDdy/ghVnEaLsnBDx6kCUeQRcdgBVK/NLZlNJcnch/FeuSGJFJWq+lgu+DLiO1brUAjIMjP0mm1OtT7lohXqMy1mP3DVnVuOkoL7crh5+2FN8rTuGU/QKwZGJKNUkU8FywpvNLsTjHJdeQVlX72cwL7dlLPdlDJ3mihrRLqUQmloLgVmwpBO0lVO3XF7tudLhGYJ0HCHjqHgRWMhDydi3YxWFSUzcySc2oxiMSXumKNvcBrG/lO65iYpICArYld7o/CBGPP9Lq1ewVmH6G7KH0R8gqFrWYZbrTm+dlxPB8gSC4k9R4dhtoa1ge0Xh8u5DI1H0xJ55Y9CtugtfpWgr76EfvqgpoV9j3QFRKn+3OYAtEsIC1ueDJTfC2bredbZF/k2hs4imDvtkarmzGWZdleysDxdGcexHw9YkTMz3kzJsIzr2fVMcowr87ivrqf2sBXSg4cRpurguQLsa88dm4D0BUtr4cLBjLb8CljliXms6Ot7zoJrvyPWsncgZGaVn4mTS7qD/n0amG6l0Pw6ko7gyK8JxOa+Dy+KXNXOkz8NIAENBDwB5Ju9ECqgnHDZCJgarZwqacgBMyq3QPbRqYS4JJUNCFsa90bbEkJYu285YT3GaagxpkFnRWy3NieGgSqxmtIzs37g7bd1kfNhw12U/LDubCspflYDArpgB3Z/7B/7PcidTdYicjsCCStFbPe2RXAY2v/2CCMUfQY0JatB8tzSCIuiS7wtL5I0qK1VbmIoVtkjXco/WhFIdTDg3bvrWu2l4uR6yyKkmDmyr4aTUsKGcJTa/+0LyG1tAU+ZQxVv5moAQJAvGXMzU8JNg8dbFdKeqPQ2fcDdFNnOJRs6UjS0aJWHTMko47HYeTkRhVn9XgSgDCQi34ardaSCr6EMpz4nkNzbXohiXPE3fMpL8gMe+3bo4hk8YmR4Gb/9WGE6TmIgCTi3R6VkKEPa1YoRpPfxsqAJtcYbdMIXRbM8EvNULhV3Ikhuv9bPXtb0tUWS+dTQ28vakbJkeYM1Ggc4NQvbJpGpHVl+xqLcpVmGu20rkhqEc44fUH7jw8G17wAO4IHkD7DqdJMy7fpvjWwIGErE2HE7bQuYBKe55a/gOZUN4Vw6SIoRjLZRSOoRKMlerb7IpvwFqNOb1Luy000z66cogcUpKPOvayrMKKlT9fhmFt+ut04+PCA2+P2ICUKR7jSRHdR75itgITVf9SL8Uq2NFIbcpAqIpYqb2Q8ycCSvfes0pcB6XGCqVpffU0taathbwCEpJqEGeYHFCMhIyLaUn8yKXwwaudt9+Yp2E24KN02RD7sGLkLTwoJfCzPUTxUWSVWbmsRH/M1huZktYLlEqixDGtkGp3ze98Jum1P/BxymRdow2ESihbCcBkPdUT1FZU0EqwxxZAOY8G31uGY5FGtFhZSkZLl4Wpx04aHZ9ypWsBaClEYcnz0vKx1t37vlAJnWRJwrCtTw1F1FqNbpHu2vAgGzMvQQgAnBITvgcFA/3hSKeVw+Xs3e8dLHoCfxtap3qCqcn7dVPUaunv79yYTOn2p7fT1zXK9E2kjUkvaVMRQsiGMFfllVwNFtZILIGA16ReEhsnYCS7xNqFA7KcPcPSnjzLSRTXBbewDqr2wHn6RrcnIJPXsJA+h/GR7CI3jV7b1cyS5fJ6mJjoXtelD5/I0NMKTDUiPUlkKyTB0yaHWkvdH6lF50SwE96N2AUUP0OQwkSDam/Mo3zK8q2BZG2pAbMeTNl47hFYyJaO72LPooW68Kd6IyQBphSG81ISkNKbJ2VKhtx0Kfe/9nUOTgeJRIqBHJnzmtHDcf5A7FoXk7gwHEPmxwmtvTSZUsNK5p6WXoQhqgq9TeR2F+YN4RPThmjZyuaevIaaL6w2zvVJHsownE/PDQcN5QDKRKvicoHt0e1PprwGYxYSsBgjim7rpB4cFRDSbaj8Qb7oIrdfTrtHDsT1b4iut6Tax+aG0OOPupEcj9IcQkmRyQtq/RPRShvbYHF7W3FAu+Rlq9DG/NwZz707JOVujWGVM3fLTi56rY/74wb+2bmgbzlAj8BKxp1eBhlsPbK7RuiQgMDKfrCUd+0X1HU3SMpNCO/SnnLgO2+wHPHzdQA7LvJP+in5uHXoRJoKm0S5aTa0bdPuN8vxQTX0ASt8K3zsqzVZXRF2rAP1rIdkD0cF+Knw3OZrfx2caXCZF6a8dPlFGt39npvWBonsa5uo26o7rR3ci4wBvZciyMnssU863SeAqD58nU50JuubPCcJaxEIUO2IDpPJr/PNgaQtbhEGJyHQQkCSOvBoEYLQok1Uu6hU6CN2uRZf/t6oAekHGq58gQwPCQ6YI4QW5gLWd8RKIERlYbDi4ONWGp5V1K5yi18bazWJF0QKkwQHaOgjUTBSs2tVAy+RGoC/1ARaLMRg5nAv9l+7Ay2VEccgtFzY8Iv8lED/I4+55TklZNhSwiXfyH9XOyXDfvHXHjDV9oMCMXV/EPgulzKCd3fegKa5yerWwEEi+IUAXW/A2Vyv7t/2ZTmMRYad97Qi1RVCd5fEjiONBqyXzvLMqCYBPLaixIjVdwdZqjQWD405eOr1+lm9nI9P7WBuVZ8mVkWc5LDQvwfBxoN3fQCbF3lrqmOkHXjF15jCsz7vXm11a51Hybu87BJExalWaetF3peCZqQRVAnJzKh+bGLtj4J+TvspgVlTvhYiTfueUDgiW51leqyI12XNa+Sfp69QsbbrrBceY3uB8d3gJvcApXhe+xAYwR0mPIkMznloy2xpsOUZB0IgcWXh3jdzWR+umPRI+deXm1cXv4aphFEDZ+XPvjN0zRu3b17RwExOjGlAcQBEbYNnQKYetQTKo72EpVfxCTkblX8o6zP24r78o8LC/soqmHZGyaP9+eftejw32eucwIZpXd6Hn+5i0dtWkNJTbBp6Eo3f0Blng/eGOP+/O6ZM7eyelI1lIU/2bktYv6zHx2dTCnfCOQbLNaRMlA6vlAbXVMj1/t49pQwYSwZxQNwipP/njvHaFHE+OSyMcJ+E9b8zvakbejrhEkqHPoeY9R/bYpRI2Xax0JT0cUKbxoImaRKjVIyLH75IK4JaLKk4h6HJaYxzt9ay2Z9PqW36Af5/AfIfuci9Fnr0GJFHUAiuZs1U1DWPrOq00nGGEyiHQsOc8VjIRWkXici2+Ee5fnhlw5LQ8MRONi8etzyMvNmjFWPEIiIgJni6IBb3iYWyhGgn37hflU13QD4+1JQP4JWQ0I595iCPho3roM8sxSHioM7U7UXqjqREZalmAFRQ/MEnweKGpBlEB24BzLWSLvalhlG3lc+MS++BRUgMoAsWXMOBfvxKwSfRtGzozu9SGe6qoSuYbyQNZdaiBPDbDabLzOdf9Ou0RRGy/Q5Bx5BR7jWMxeJl4Mj0Ewz89wvH43AyG0CJ5z87Bj6BsyHytAB03GGwIBvb9z2uG9xErXmTWdL6BzVt0ONGPelElDvnEnuNOcmGQiozSAOwEJq1jzc4FuTsxLAZosH/O9H/bqdYpPIfPnE6lasEfLHkAGqrnHhKqUL32m4tx4TTNVRtqp6xsXagEts4HY73bWNO5jr6+LW4u6Ug5r5W7+LKmGRLHF482KoeSqfgGnHHksXsDwC3Mm014quC3rXcY4VdjuGPpokxFtEIJfq57/kVzR81F9VghgKd/liKihmAv/kQbOJn1FLtFUpvh2Q7MNMhvTfQi0ZjEQrmtLT5dsUPYYuqQBo0W9r40cADqp9JiufI4lqEXEvPlC2P6jVLfoqhOgxvAJ0XlDTWlacf7DefIYxPhO9l506/0vtISicNXvEuwbmmouSDLq4wCkRCEl7N28Rxh5LsxHe6wRy6GLxzIsa7g2jsi5GKFfEW2OJClyAaP0KaU5/nMPSvAPvu4eF91pJHAzOtpmMvPI1b0/F9wgG2iEorWu6gnpZtigY9HXt6Y4L3k9bxBk4JSLTz+saojOqKnfWBxf7DjQpEGPNSiOXPedf2dyLpbLUcni0WV8qwM5g7gjGOUG0aU0VZ8WPXlkVUuRqjH7ctP/lPZka8aQ4JbudpXWRbHLoKiMBcf/vAj7aFPI6Y6Lbg3fK5g8G5QKiI7vrbmRKQwvrajaNXu4vcT+MOQz/rW3E2NTs9ksvZ3li8cXkzmuKOSVo/USeuUate+HYyHXFvWcLv+b3kQ7bHfiIm3gzpgSoHSPJMxlx+e9YzjLOuRnSkbDno1K+CdFl4mtP2F0p9J0HanLp+0pZN5pyyHLVCW5ntotVZU/R6ITTsqSZOZT07loJ3sILFn5TpvWvaeK9iGJ93EYRzJlumZJl/CwHzNo01VMyUFYxfj2dDwxxRDH0HhGcSXSxKmvxcV8buutqThpZqD+137sl0PX/YWmjb0h+jJwwuccjXEB2TeeT84aM4X0WM9KyTobGM7nrFI5Bxb9JDcGd+PcTrE8ZFjJDO+O7ugIwOBxsJeLV4EfIORYeEO2HgpNbgLclQx8fBxrX0HPIBAbEhiAhloNynzC+D+rUphLxiXvU2W4S1edrieXxlhUY3HEnKvb04CVs8K7HHpBjjtEMAZZ89mTynt/JLsNA74j7NvFAvALvA+jJ+cD5wJAUkN3FQQ259fiXW4RW6tEbxut6/enyEAY2ux9PfxDxvV9Dzc1beA8H20vPvnBkZujb1NhZZ8W+nCg8O5zm/kDFSvHr6MSFzm90gCJiGzF8kDccupg01C9HKmDMsHlF8GDVc0gJm8Lqj2PWeOuObjGLNqiMApJafF89xH9Y/5o+BVOXSHtwl0L0gfv49FePqK0OnkLgBg2HZRK96QHFfvMa8sgDwrILu8XmUjpQRdl7Bi/5ucLCL/UMlmoDnY076sddGZU+SPNy/Ia+gBcmTlmJ54nVipfX4NkUnGsdxWorN0a3vhnhGdTboMCZFWVHEJmgoVP82TlHhGnFh5aeBDiLZCNukz4L4tf/KOJC96OFPzo5UMVe23j+y8goeNkvyUeaCHDiWBI/SIPfzf2T/H5ClNMkjJhtr2N1xloULCc19nfDMc8KyjWg0kbXJdwXWuC9UJRNaHZESAFRH/cAv5618Imo1TTIc4yV65OhBFwvW+qV7WCBlEzj5ZjcsITZOAzsUeJHxYkZKdrwZUmqTfiPbfqbqJA9Xs0lz89TReSJUJ/5Y/4qguDU5C67WJUbYVMlbMDBr/1kzcbrnPOwWUXqex31JUEgxJ+GqdO1Lko3rwzJef0R0d4LB4qSA/c/8BWiAE9SOs2a+GlfCbJnMp3pUP6tbE36iy9WXYhibCaP2n8bGAvKNJyr1F2aCVr9wCDdpEEJViu6RXfG8ax9JQwHKzSHe77shzxOHdR479nqvome5uZcq7jDclOXuYOfVIv2sHd8wJuNV+BdfQwNHqwVFcB74Wrc4Ew//FSUIc6R07l4wnDLBcUeAEcHxaMztGSCGhS345eRJn0v42iSJBnywzaSitYXljqoKLB3OzTYvnfIfoxbV3267en6lw9DCXimGkTTgG/7bY7p104+i7In4NosyEdObMSdagtlyNx4t13yezhGTlTPwRceNsVVJTCkVn30LXMPGXML52r91r13lnv2ziqe6+r0qKM9bWek54sJmhhuDvr1J7Fm+CnxnFm6c+dCB7QBXKMzkGAATqnmE1Yj+RelSDw23XsrNN+O9dIyWq1eedIYVKU9E6yyUwBf4+5GJLjcBWRImncY8Q/09vtz9Aok8w6k1EIwAhQCAcCPCnRWkWkjBWAAfSO5zKpmXmyGj4eGQ1wSmCYQKyBqP2XkVsl/SZA9GfFO5Ncs+3XjR05ivprJHLxAg2G+nhtNug1g3dGN//zRaqdZZPk+wbJibcU3UEe6yIo9zxTrwwgC6oRFx81b1bRNzlfuUuoaVg6Pww1DzNqZGjUssZmIvq/pw4auaKusVsPV64EkU5Od4A44/uQzXf0N7tRBvWgxjqaxpV8/VE1hfycJ+3adid5WFZ7fwFGDOUQuFagP7q+XXRKMoBXADp8Qj590Ol2LdnAwlqmKGZQJY3xGRIMhVxUjD/vDEuY8X9lzzgOxSBis0EWb/Y6A9GkinusA3LsFiRU5GHF/pJxlKgL52uvi59NZtnWasSXV9fL06nJ7yrLluGd2A6sA/FnsC1zd6LK9mC5WM9hG9rJeqLTwo20nW5TMX3jXJ4YjE/mg/AR7ntnjv+Wler86qKKJG3VNlqs3DRB/UxkEGLXF11rL9fxIpMLjd8SisA+GSodgqdtwJt3Tu73RVsH8muc2kk9OsOO/AkrUMLgdZbVlmzzVS5ehaqds71zelUJCmcLpWmEnIFQM734ZHqP9Y7ggWTeo+uiDgdX0JdOvnD2swvm492TwAmj8goAqurWTzcIEBuS0XbszrJ4ZvT7JQkeeMgg0mSO9+jKY25wNTVhs6RCDtyqmjicQd8jLrBrVzmUFSWKeMNgBFEvykob8QzCoO+MWx79szfBjJUSqY679TeNZDD40b91oHG/v7jiKGfLY17XICbpUuNglkKtP555DY0O44BGUEEkpTLmQ/Tv1IAzZ5P7EWLxBuE+oEHhrEG5MKbSM9HfeVhYfBFa/Khjl0DR7a5p1t1aR113JYAUWaI+BWVadVGRyrZjIaYtKRfgJ2ItqnzcYSIwo9zcTJwmMwI9BhaW7YOY0Pl1W9J1jKrn9D311vsbgZlGwkGLs8QJVIx4Zn8ixJGdyPOZfkeeXvbTwpFQ5cVsEUwr/ZsDqJk9zgJPlZ+l3rY3UCwX4pCGtmxW3ulX+KxUAXD5ioVfmouZFwumYnwZEXOJ2K39RemXcEIOf/qVW5E5EPhhb+ILqaw/7w4SfC4SckxkFu/+0aWH0nOSnlbYPf0ztjgrIQ2fpeTU5WX3lC1KfgMr1vDtxdLEd8Ao2yGjhL0YMi7zHKEm+tuln5xZEOHTVBJlKjq1+EKMSlYDnltxsDoJ3dXF1q66FzC+ZIKR3i45HzXMwb6OksStVJvs+tPSKpEnvXiCoMSttpDyUwIn36/ejbHa6YsaMFOgoxf5Sf1cM251DwPvzld2P8HVoxVxe10jneWig9w2MFQRaaLchD6mrmXSPZXXhjwSeC+Q6+kR7Ufpr68ix3XlfGZXDnXrBmzghfqEF3Cf5je++i8IrV0WKX9FjtIi7LkNwQf0QxXLKvKxUq9op4coY3yt7n85Gggu02FHafrFEFVLonW97ZO95wAdtybClD/0kkKsq9JhuB8g2bK3GsGW1fRVdb61LHLhmweDNu3llRLCGJjZhsVOmLESUz/IO4U+lnva45xuuH0eXrkmNJA7YtjIKqLbf7AlV+6V/NHIF9+0GiXzg4jUlq/fpaf7t9/fNMrhRmp86QDeP549/G+Pr0BHeV0wKkOoNKmYAVWT8i2gYEp6ak4iu0qsELhXV3RtRNCk3UMJzeId4M9vcaT8WvypmwueL1avPK7wa1jiB3zYINX0ethL9HmgmTxfbfh5/MaAVJu66Ep+p9DIpoft1efCmtZK15WzRFitYtY9po7jbZYBG7TlbDH6ylujuiwvbJW9lQk5u1jCPFX0jYAyjE0nxccw1FfbztV/55ka3VmT173QMXUScH/MQDoxwtUitgTYY7f2UUoPMfsXkI0DB/SnB05g5IfWwwbKI6AAXUuYfwlS9OIyhHzb9fs0o5s/ELbB3RwHxvpOg5gEPUpfRch5jTyKmV2ik+/pzk/pOrvjxT/SERN9OZ9VLzTN6/6RiT/VlMVPdCVXSh7MHZ643UfU3FxsKCu4n16b6Hgo68pOfCBDOhJaLbpmlYpTWxeyumsRtj07Qv45CSj2pcS5hMy2uR/80rwwo0TuuS+sP18wCS53aRfIj9Jj2sUy4gRhwD6P4dphqNMw0jcwli64kQWzepyzOpOBCXPerodUJXCRaMxIjal8olPOJeqJVoYtTBOygrsDp/iDmdpPW71LAp3iX0XpYt/xcfKhXzaxtZ7QHckQYf36ARCm6bxbgPWTke9WEVwkGtXz/j8ebpjEuHuiuTXeRGh9fX+erIoWfDjGRvxhRdK+uCuZuY5Xdp8nZld6p3TQuVXB4l61fT2aF4QBeZyaXcFzLkWBNL6HIcm7msxftcI02MRFg3RPjw2fciWoMMLe6toQ6nzXLPcHDatOOvm15Tg4yeFSTs56qwpQ0T0NX1S2EdA2dkXf0dtLm2I7UkKB1I+G2MhBVuyf/bs56w0YCzGlBkSc1YUwPOaHzydHEPhn8H3000KyEF2qVSXf3A5E57HHws5wwzpHcsqVk6JHbRTWbxeUIzS15kfIfeHBbP6aKHZhj+0fazUHZM83Mny4XuZbTuhRi48pLSqh3/i1sG5KgFH8XBBlHAwYZa6h8xLowFwSUiIh+Um8sB1OxeyGXhE6q2x/WLCoKUwxqe+XyPejES4jce/JBu6osUKsSLtIUCq47Abz3+uw2AHA+0ijprYEE6xoAZyHu2xsr193Hk7yAj7GbuSix0j4gynYhPUsYMQKiGUJIC86s6T5V87rg1VTmqjkCom1NJqSiY4luCn+Cq3xWjDOn7erx9cmrUg2j1gYqPIlZvUvZ12RE9k8zj9ncfuh6KDpOVAd3zHQRDT8aGZm5ddlN2s+7JEHx2uB4yR+0Fm6WLvuQ/ghmlkbOGwGmBTG5cTF71dAiqDIwd7hbI5KtBmKC2Xva4Jr0GCYvECiJ8x+JlflQv0/wzRGsLTkKMLXAiGDUJBuQ9BkmeayRoMFByJhR+KLWnDG72niHiKr5bSToraGup1M6QvhVN7yO4lo8RJoAyt8cTOZFOOu5r7mp+96ZeN2hfCC+IZeta+nj2ZJiYavOPe6RQFphQun/tQ+XjIob5mfHLrGIUDz2/KwTWIWTscVZxaIBbnJ89SmDbOBbw/z007lC2edaxqAg1CX9yMEj2tLi3bDpR7E8Hs1zrz8A7F6kQbT4eQ574FoarC5ChN9ZfNCjrtzNZFpPHfbdFMpQd4sb5SyUnSgIw2LK5KTWoAdQYXuRO5JwZza/HCCufG+0FKBwhcaAvlWCSORpc0roJymTr0XCY4O2OitfVa2KU1uTPJiKFvvLbL/3De7eOxGIZ9Od1CcgJYwdNSuvGNNwFaIdQWpmZiUJetG7XkW1WOVWW8IENRGRGkY9bVoPFzYWUxSCE/sKS/T2qa9GLvy5Klqlz8do8b77VbM6cRkgnzxXmnCavELtnZ6kaZ6ULRRdwrksPHyADsFv7XCY7sIiNmAkRR2NXVpa4mhv40usONMMWcWf34iZn05dcv0y5iBijbJ+LVS6ew2NJ4JE2ojjNTIolCFGMHCQF2myrhZJ9q4U0VgymnnJauT1rknbyyvajXpb0YAzIWuJGONbwDDBDTJWwnWQids9ZRzKF/er4uiWbkYHxPSJxUol/kfG7XFNMH+SXwnhToa/JbVvOqxv8MPaykNeoMTHL+jMO3Iebt+pHIMmrx6Ls74FrAmyKvmfMhRVeUJoecOw9vqVjSWqQx/RbTRIM8xTYaWFGD+W8PG5HGAdfJK8YWC9rq7WSGBJbJNoPq+MteZpOkcjLnoL2y9x8ASP2DeZTDDUMdDGmBa7jXTYT7fceqPtPJeI7kGSZOu8z7DK0t6Tqm1/yF00mjlSTGnVqFCKaKgHS25ifO3wOEM8roJkNW95Lor4knnu84GNZGiQYoR26gCuW9ayxoVHNAoPxn0D6b6wES9x5m9gg8umpTSwiGs+hNRWA1fRrYkrrp5CbPoZY6jA+wWvc046DdkrmZUPdjKbodPU+EZ4qdwXedsqliYOyWevXa1bHdgPXYML1Ug1JM8yVFBWSCefDPNjPCbu0L40V0ZrdsrMxk3xsqTHEUsJWPYkHLHiAnvULSn+VKM+sFR0Sn3UUFw6y1CgFPfNWOIE7pfq4F+dZg5xGAq8sw4sxYyVfXTmWhEiUtNCA46F5OQ54XRQE1g96ZftwJzOUV8Bn5zUDO9P3vwteNzAb/p1eablHNoBjRnFTPwMIXljq2nQPKo+nDWelY4bnLXmyhAEWUDtW49qZgVrYGW7kbsdSJ98u6lhbPxYcb2BU0WG6qHgMyvK6BX4U//hYwoa09gFWniRJX23KJlk3aOuDaTyhzGPDo33xBZEewu1Fy7qBNS9rRan8738/86qJn8DcXbke9N/fe9MHco5mvOo5SHsSbbGLqkvfTn1H8BPmjyH4ByM0hKP/07+Zf35rvnU/rXIg6FK67/xgYUoPJgIoFx+XWciODaFjYd5iUbXHbsti1lzf0mo5fgHS6HuaE2Llbe2ilC5mYI66mvqjq7y98yzpskSvHKvhu+xSJ0qrk+nXmBPpDRcpUwfI5ZPgcXLrhhH+qzIyK0X47P5Nt+AQuAU3AgOpHLv7YXjd4QF7b8mpxQwtal4OCR86MP4lctJOPDQMVb2rirOxCAjE6EWwdhtY2hdgXZQPcNep8aa4ybOe8I0np+wvq7T9Im4D3EDKTZYs6nkhtszPkr2+GAl3TssL6T/MWmwj1S+HabuP/mbfQiPAAg2H1R0euVszDE5tqOXVgdDYcbTBV5VzXFRPczGTnXytrPvaXDxFk/taZVRvJ18ga/YtCEev2n6TvuTrSUWPug95E8uZIVT6yIl5KhRfrpC4HTHtt2j/QirGKZ8nY0BtVHLNhU9VgkCz8bpYuuI10oWiu6r+DrOnHNiTnnWzDZytXTMwK+huaFv/FyidPatXKKL87HaI934EumIYtnQSIvJ5sdtYgZH8VISDlGOO//fqYx9nkiLZBbvPy35YM32ZKPjUZ62t50pKbn5xDfIwBtCY+W9yHeV8tdDAXKXRpBsT1YVXyis0U4kulYjEPXKqplqVyuFn4EClCo974hD/R4Z18sRq++7AwfAmNeAKve/Hv2UD8gvd1SBBYTm6RwDHVvrzeSSuPR2yqj+ehURYdFyNtjcJk42WOn+k6Xc0Tvaq8AzB8SQsrpjFzeq578c9vWHxVmNMdMB3HOYO5pNJ22FUcFMw7bojjncoldlxFvBb+2fWAH4p4PetIVFVSr0ukDLyKQBGbe3NjrpZtVpMP+iD2cd1SX3EPTKyH1h7vj23hKCGRnAlv2aitdhtXTqCHhrI/YSm0TI/YoFBCQ6R6oGZu3f/nZi7zct6vmUjGofTO13wnIctXYvzFEZu4kHrwGvzRS3+QTxCjZUq1kev5Xh8GkooziGpaQ7JnGFhuj17BQwVrWUhd7Dv/mB5hrWb66BHKNuwxK7Qd3TDHlPEs6UT4xBc51S+vf2QVKSZMZvInSRcblQCXcLB/qd36+Y2hcWr67++eNM5gErxJv0dk0FqPcCAI54qig7RU/8wIXVH603MCP2kD6k7zTWIIXYto+MjyBAkBfSsCqgDzhJ+NhqiufOKUyqB1nTzo9EVljOkRCCvCVN24IbZQxJ+PxH6Leh3RtcEN/+tkZj5xkUjluvY2xahsRhfE3c5AvzgZzdpEWvN7llCstnDXUjBWtW0sGu459Kb3AB8A01gplrLpSr1pTC4QxM1wmIriY0kLvH/JHphY7lkCLKf6z8XxQSVZbuLkk1a2fsSYx4mc0M3stG7dOALM05Yx7tvZYjn6fCcffE9uji1u2XSGnNMWkr039xqyOXypG8pZek7eU1CkU0uyKiUpDizyODfqUoz6SupGrpcNvmT22OUOTJ+hxAVQ2ou+lC2EjCte3U4gPy/WulT1SboJEhGt3fNTLAfdIj7P2b/wKQIrWJnxuKx1fzn3owEfN5bvx834q7+PaWPkEobRkTCx0Omk70qAABOU1KZrWejWCRD1ie3gNT/7BO2WizT3Ks60GQa1gDK/fBnST333yhtU5BGeB9c3sLYpp7fsxuo7NTv7MMcVWCEnuhRLTHJ20HoHBIvR9+sfKbdG0iPULd+DlA3M1c4KFJYK5TDmqPu9cd/8wv58O1AWWr2im5asLonc9jx++jAteRmIj7+5n5BAudykQ8QmPgJ8TODk2UGNXfmlMyPPyMmdD9HwjmP67Gg4uM6wSoy1vNvrn/2nAjie2MUsGtRY9m5YOObepRiMAiNuacdLmykb3wB0MbvVdNVJUm7uPeRPHjYVijbeybYMiV9W5d5Au5BHRe+a5GkuzyOPZUBGT+sHzBtwcXoiyKnhjfecqit4pLlqihE4ohlX5Q3EhMcCA6PeOY0Rr2rOIcEKJAgh7qXlhol4zV5qguLkLqb5gQdCvKMoYavoSOcxvllEzuZP317BYFL/b34iimQgI/iGXSHMuOeBfJkowdFhHv3T/n4gvKhrr2QEhDehtgN5Mc8ze2MFNLKGw48jJyHn20qzYZUgwieADZ1ULhoURtHrWK6dw0tIAQODQfk6qTfrns1sjY5spHKhuPxBZ6jcIq2hamPMmeJokLx3/l90zHKoj9pMu7su23lde+QFTLbGqNU8cOhXyWbLWfjEGantHpEUQirCjmqjxOiik4ToT8Yb8A7aXkpfUi2RPJRGnRplrIBxWDe9CdR/pCrpmae7kqNPb61iS6tWpPedzetCFrRqPMZ7HtMaLM3vCBLvMcxocGZJ9mABCA9CVMouC3rJs3SCq1jioSHKfXSM8LjztSDq7aVeNeZKRiparNEPJmKO9ta23ZItW/q9kF1I3YvlFobX6rAg8sbhVXdw2VGfFox4QjUKcUF2ihiH5KAFGc7XYLJlUMGefpRvvnYUoCdtmZ5Pb+UMSrSzvIK+k5zKsVkGz1jZ7ro9jma//aah+xDH7UBWFz1OU56QQ5UFnq+kTmv4ZkU1irovhfNJgOiYIhaT/olmpuwA7KvpE8m7/1enAFywxLD+WF639iRlFXITjVGu5I5zjiTs6AaR+5E0k8Z1Gy8C0jI+cYq1IRk+1f7HV/t1kp8RLD8Dy7jvr0hW3L17xi6kUYHqL4O7oxxvPMlF4Hnn2/CPGn5YCMWMrly4VJZ66gAUo5YBxwiTP2Uov0XSJuM90YbMJyVhzTjAkSKqjSEYYuizj+tBIJfxdcjk0/zPf09dIXDxfO7oJssdWKQkj2lfaDh/8sRxyhEPo+LkGnjmT6Woa9G75phCiFPCPlhpPX+/6OpRZyHfIDzrlGlQWhKwCsv4+7UrSQILGcw8RkfNtwB9xcx2jnMVGoDPfdC7NRp6jxxdZGBX0RQDfR+dhkQnSfDGbD8bBn4eeYGGXvlJqKFJvU6VxDyZfC6mrDLrKnsfL1Y238RwFKZe31LNumAeFJYYyuP/X51AlCNvu07/xtSKXLwu/1xWc3k8cErI5bj1A5zm5i97G4PneffcS3Dfp4BBw9/6CWdw2GWrNKcb0xhboxMtApW29pBhC/6/qNJz7hdrU9DTNbA+Nw2DgwF9r7yE11OrSp4wwzicf+ndWgDxRFGgRF05Kr/38ZpR+JfzX6Z048zLMIN7TeTYAAcirzxMqlfgApYueC/zeIRvvk/fkfUBmfskpS75afVTa1qR6LHyM2mZlO7w5ODzcnwXKyOPWjM1J1QSrlDotXLvLHHWGk/384roDq4CrqyyUFTeK2jYCFcdi7L8UKD5g0QtIrx8GAMknr/i7HVc+TpMD6Y8dw5sd10rpLNNSyezFMTuSJzUIUsGow5Gfe5K+D53ku2ppY4dN5FAOwi7VAThKSKTKDvX+FiqAvwzCXl7mXcmOs/PtrUt9CeOHIfkOIlVZ2ypTiXpkYkUWdVE6dvPexxVc4F/ztvaieRUpKSB2u07wQyCCG1ZAjH1LXrr5h2z2LZivW19zV3/zA1LmDdF77Bl8Ww1NcOC+dAcIGm8kj4g/lY8YQtW9JO2X991v0+LEM1r79dBOGSP0MOFQuyEh3zhxSf80tBIC/kBDiCQJcIgm7aZlgNu9SAz6ScvUjhaMO1bFYPGsd8z6svZg01dPRQWNZdZ6e57bm/Sd2diJsRV3IGhAkUmsR/fNiFo5y8y147VlsTV9qLQBDOXVHI9ft0ers1KVEVMY5U1gAuC4451i8hBUDE6AKHuIDwpi6xAeeYUA4muFtgWbHD9+948dqkSFKlSeThWWw0jrW51uKRCstfzGjICUleMFxhqA+QsRVmT5h7V1PPu+nDjUmKdR01/iQsNqLbpd6hU+N8MXRlhKWRZOxEoE77qaRlvQMOg3pBE7IgwGtRLBJ4bXw4z0EVCNLlLoOs6VgcRxEXlTW5PXIOkHCSqCznKsh3nEj+r1HwGtGDPUEsq4nxKt9Tt2kFI9OlXlGLisy4Z16HwYOIasOQhC9cwBgjRbFZj9EPOchsq+VaIYoG8WOYufTjHSrktpfN6enhfIsDWFzzkGxHvxwrwE81piamxhu6/+j3wpa5K689Zyqb+GeWiH+R/NlZAeYl0msfvFDDz1XImJEouIsa6lDwA4RNfGn+kjtLgGv+0azXQLf9ZJCZDmblyFLkfWKGwQIgJidkBflQ9BLCiRwacElO58l6kx3eIB0EKlcq2SOFjY6vW6pIxyAA9gP7SAjVapAPCpL5EcJvBTKai26GbcASTgm7aAZcApL9DM/1xNaBPuhfY9CKCOYYYIu8EJYU5EEAN4sC3uPz8IpKpZ6HlbyuMXct7UyQTSPOCoAqs//Qz/jsWMeSVoIbmZiyLIwq9Lnpv9cOq6T0w98Owr8/m7gzgJOTHZsULX1AElCbcgPNOWHMlTlWsOdTkQUbhdSuKtv7h/VKlOcvbpPUScBIvdiQmRNU0pxsVsaDrjZaK2mC0u57ghpshXLiMbBuK0FBOpCytWw1y1Yg/TgzgRCJCp5Br11vHxoh2S31S2hszl+GNj3JgWde+9Zzk2vxnaIbiR+EVdZxsxV3rPuq6jPyX5Hzg52nj93EIXG+KlmEwZKUbLh+6SsE8fkEZdTvwQ4pGicfYalJkTmUcK0g96KSm7lkKSFOdN35nyOq9GyuGgZo9lgviMaGXRsgah7kvgqULh9kU0CqUnFQYsO/9iB4kndoE15HbCkdIFGzoPsuFWKB0ejaT18l81g3XT7+s0a9cDQLdg8YOBi/2HbOADaW1bcycfEjrWzx48s/day/Vy/jEKjno0fcedURgcd5dZDVw+tge6Y+xxkbpcOqzCYzhd+7hgd6iI34GRj9mUPqeA14+kGuuFefc9BA+uNcRC18XErMIn6h/KdV1vSqFowzI+aK36ziawAADbf/O1yXAGeFjC42NGDp5oY8DxkgtwObUFZiCEYjEuSOMnCVhZSececIRo/qA+eIXRdA5JzrgpbylqQ8WpnJmlxBU3cpIJoQsnj7e/VOGRQStw7tROc3eRZtj9rU5HyDXrKNxBOF07bgJtDBQ70QdhvwK+3yD0r0HcSYGr7tEvUl02E4Nk9B7Et4YQqfCVIuoPBL3AsNWe5hjeRvuuhB1gJKFuOrl2k641AXx5SoNW9DmDQsasLj26G+Ac5w65hfCEi35YFh1nw9ogVLD9NyvXzMEA8d+5Rj85tM1jcR9ETFq+K/XeswkfR+hJF9kNbUitEJb+IrPMw1HDZ/UfQkBE+fuIC7AJrwHIiJ0KvAXQmv4WnedIaL7F3NYF6iN49RQWs0UFo0iucrnhsivmxAGPBSXBE/v/nKPRSNy1+Qqiaa9ekHhhUykHibdp3UOUrHShXWMlL7vM3HsJm/8/pALVn3+DKNDVfAByycCzv6NPMNgDcYdH6dIJYug7gmOzFXfDFvpAUH+uEyo8F3WfZoX35gosWfg6XtByhV7XFOGFUBIbdEHFS8A5UtBMpokw/YfR/i4JY1ul28FJYiqDVqo1dHQfbvyO721YqDBVvegPUWsG9NkMxUrLwi4O/+frOiRKafmKTczxuAxVPBTr2A12cXu6vkp7AtaELfkZQy4X+Gl0GFp7qC9DQcj/SxQcYA6TCgnOzItq0wsYKATsMzW/3KVlkCwbGI55v++eWlEwWaFiTWn8aSMwgK5lErcDSFwFmSdXMgOiVOi4YnyJdslTAaq1CDby9UkR6yuRPVjYWWfLATyBKvuo5CsIWsRol8L2QviBvRAHv4jdsvo3SySTw4p3x8zId2BcCJlnPHQBJrDJUsRlu6AZPAXxpDTzQNgKEchWuQYCPsPdKlVjvolm9qrPt33OIMo+uZcKDCISkcrmTJwDS7A6sAgWNkLtfx68YQuWZyICcab5LCRE7nMF7cIdmGBgejp60b5OEnbPeew+EVf9nl6VSp6fkCDdTiJVfyzdCfY490f5Qi/SnMDCd/Fn9bWgUN8dcYyC3att4g40K5uhNhbjMG1RPvDRxfF1KtfJnZmjDTArjV3qbz+mWaTkXxwzCYsmLl8UZkZO7GLi8rzIxjbC/yNzY1iXw8TL0KF01ftXECZksjAnlKUD69Zix3lRZyMoVJayaq2e8uYTledwZ9lPjMVQanBZhSwE8h7ijyc6E1hl6VX6pBCN3ZK0eANuOWTNVrFOXD0obQfUtzg+iW+uIz95cP6VxsmN54OvqPcyrMzShsQD6iWrZaTt/+z+giMXskOx19IT9Wz06l5/IA1KTzSI3tk2lze+DhUFaA7RUUQGBEgX7qtk+UZfgodygLDXX+T+CAf4cRsDBQfLHh/LVK1HUEwmsXJ6ijrNRGHDF1fjMJAWYRh+y0Bqb21l0wjsoVDfu37znhl2pp4tSF1UBiLrUqghRu0I33QoyZOsmknQ+d+JYTZbp5I+eFb+ZlxNE76kULPocaQUFApjqGBOGNAyqZWvxes7hsG5iE81GEuYve5V8BOvv37EOmeX1KgVsiUbwHYUMd0masyrRziLEOmkNlBtzPaonj2HnKbBNzctmcKXBEDUeGv+ozpLfdJowaL09jfTk4BygTMNhRGyJBrXnnaScX74Lget39TGEmP6GXykK6ElGhTJ11z9L1fZ5xGbE3CEM+JIpj8QXB3+WqN9AHOC5WivHMLpEkZRdqliKjTuR3e10BoNpFrD6oFMiCfW/zR75De6y/pdaicmqRcHlt+BP6Q/k0R/GVqiE5Qz9dm1HZjOqdBzQUlIJqPpQoxxMNtysgkwcXKMAP5evvNH+zXb0WD2gcGuG4VU+RouVAwNBIQ69wkuwLBc1QmHL+lWlUAzs+Qaog1ic0d0z83eEh8Ucle8/KY8KkC8Eqis0YGANvTAvb90DmNDYBI/fUHBfEGVS8rtY4piSfaijLktjVZUfoXZ32mfVZVhyjNawwYNmUACDFSIjWFtxsQYZO1z3lgVelzSTA7CIR9d2t7KwIeQRwEutkQEWCql+jo4i5QrY/KqvaHtsm3M+Xf5P4nOEM4NDyeB3WgS7tAL96SjBoeb/mNv00QQuixJv+7ss5dAXDix0aolJ/UAiT30G6moPLqsxVdO2VYXjs8e/1UpSWf+9R4oGPVO/BhANjtCDqpOdfgzQAgk0LCX9S6aEmGL1WkimXlPXAeL1kk9xDgufUT7UGtKkiantoi8wunnXi+RCOinsJoGXzrkZISM6j9DhzUCghPMsFiXAAFKWx96udQ9opdlvnptxoLRFo7ZAG9gCDRj1+kgjaJ9HZqjriKVnr0nkmap/TypI1/ktV8zHSw28fvQtYuECeDszq9dzeJOfcgN6MwDKuMvWwdRQM6B+J1NdCGnCW2HYGpVfJMyDsYUFAP8Ate1U7h9VmA08BkgaXTBHqPjpNd51QZqDCuA9xT3BG+dEnkdVKYnjUmJBgLjYGIu4nq2VAmIf+JMdkDwhKJWIYI8Ab9I16Wv9H5Oyc9x8bbJM/D5xKkhpe5WmJES8t5+jqWCV5ViQA6fsDKaYRma8xwfsjWllsGS6vsm/F9MRcGn2NQF0OkHZHYP4w7RzO2H1bA5d0c5P7YWeDPFWPG1AZQnMumTZ+ptGwUDaqzYVitBt5TnfcpUIJivsrUQpCcaYHZi0UxDCPtJOB1+tvZqnSHjprHLzMjVAU1v/P07/AsD2ggl7S6SYFkMc0VMvStPXkCc1kqDJFDgTuMvQEB2XBk/PkLsVjqHqWZfS8yppcjDzhaXQeXuJS+OE1SRqi31cemImI43wOAJ7D1d8xGYU6g72kI+OYLIubI1MNAMBNf9MCS11kMA/zmFywIkEzs7dDTXWwUDdqwh39WMb3CA9QgEkY+LNj9F/7l1iBZ3MUzlx6WoKQ3V3pYQ5fVPX0v53VJK+bIvDIReeiJNp0m9L7yZEm8DqmL/ovngirgPivzSYkE+FT4YApUEdt45/9QizXECbHQzmcgCtdaegT8jEJlivqM+uqFGvrxwDxALdiXRhJMVHGxREPJDy/A6PabSufxFrPYg5rGp8WHzpyNkuARG93Fg5ifUI92AOeSc+3uT0/ajIGoIKjqhtxsrRvfPcw3jl596gBZryMVGigATr8V2By5QufxiMxMwF5zP0+/zKt2wncVJhItx8cybjEKo8jeU2T7Ra2JekttU5mbj3zRCSsiEEKpmdyh04OviY/9y46cpmWSNHevAGdXDzBlxZ5mLN4xz8mgqdDN/dNCSR0YT2cASef/3LVpHs0cOPXH3Tly9L5mchaa94/uw4gUv15/SoW5zTCXbd8zk7hPWA/3zcPXkVEKNYZMB48sAqXfSY/tE8M5W/56bPI3mEsEf/DFqhq8RNdAcAwLUfwkk/uzSmtUu8ov91pQqPsKszyI7Y2heK0gxGgiE5/jauupGAkW1xHCmLmjhbIykxm4NiRqUI9z9Q+CfKsT9MBS4stLNb1UC1lh4rsNTmY8J6WpLWuqsF/ylOohUvXP48BCloEdnBy/B4MQ7rqnSmZIawniNCPinG3wzqvmME51Pi8W5nD+dMWoVph0Zafa0yuFhfWsxMoHk/DPKmdQL1dMYuRIZcQjCh+JnqVhmEVQr1SFd2GyAPhA4/v92Wo9bhO3BIxkgX2uLK43ZnzVNtX5ZFql/WoFGlWznXMEectCrC1jdsmRKk1tT37QRiDOxNqocaerYdTsxH0Wf9jnJvrzWtQuGnLBifI84ZjY/R0Jz0L18e19PmaRj9yVEGlSjVu6uy8MV159lVMiE7tmHc+vnCzaeITW3qhAUCGiZClFnqE/6yCjFSEHz8gQXVHqMYZQyoLo4odvEYwPIdwme+uVQDEhumFECj4qV17UkAA31pP5h3rqgUsgI/tvlchmgTAHPf8zSgMpkg3D2lNzU/1h4/t393PusFS+da4FAMThBEjO7kR49DHsfIWMMlInCWC6mpXVc2KtnIQPHB973iXM+RQ8EhLN7uqfXG8468Ymg/2dqbj66syvLTh/3mjMjBReFbcvAXXunsroK9HzlAzQN9cuAzVI2WawlqNrMrfFDIYfM0dRbD8dXmS1ROULABMq9MVueF0y8b4Kl3el8VGVIUEkX8mHobKUxUgB6XFAvDkcxKcTOGf1rR/3kWNc71HT44cdwM0rh9UnesiONlZYws/ZmaKSKhQV0lz6PfmEjYVp3zsQY01ZqEa6SoPHO0vP3RXetVM2D+WUblRtXfKLGLT/50qN0OmyQ1vHWLj/UOguZejPPBoKjtwfulv8iH7UpOHEMDbnSLYY+Rm1GmZ75NRCv6aGIr+pbujNY+n41dJvwg/QADulsCwxsjlnL83N07Uqr0/iUWaD1Kboc1knsUhkALxbMcqe+DNhNn+pWvi/IWJypmuHQ9eMhJfYWMcmbSvH0Xl5rRsblcNPzHOdbD7YlmP7hA/fCiY9coYUkgMDdW0sWt1Y+WI8QnmjigsoRHNVH4alLmtXhaPWbEEHaUjlH1nx2Xr9A92bjRwpqWdd+88asVzlha0wry98oyjTmAUcoljkf0xakzYYgj/+1sBKP/zv3Fbm9YlakV8+lmkUfMSDZe8EN9lcSfMOTl1/CT2DEKqFgcxYK+KuXPAc/NKqqdIurXL2n8yrIUIR29WSJ2hQ2BKYnjHfBbF9F2dcH0Nk/cJAcxhJ3UPDUlOshO4uhTCK3Odv4q8aRta5i5br3uCHhMPsHJuJ91lXTvdAtNPXxdODpwcINaMbgPPirQSvuX9IJpIhep45rxCQabzxuUxmbTIlJgAWWsM9VitT8FqD+8AbZRx601NARFFzhCNh9we2skun4PwwDGp/untiRppsMeHeffNlwvvFQY8HzZy5IgT/4IiAsxchGOTwr0055tuy/REqe52eZJXx3wp9XLn69RCcAtUksUn0ItsI+8mOKdzcs3ltWPscRvSmPpT/ixG7EoTGxTtqVfvcP/l1j9GbtBRjVUS8GS2u/f/Gg1Gg4nDCVgwVKrM/ELxcStCZi969dleDTv5QYIs3WAhC+wOKoDUwbQqY7QSKjQicPlTM/JFCkWBircyvk6SGRWVxqRhneOcHVc81v6SN0OtWVZ8YGlzihMNPmBsOX7McwpDsW+dMLrQiTPEKj5YZfMfvvKUKVOl59gl8mWNW607cx6D7SetgQYsIJZ7ci7i9IAzs5AY6lCYvcl1kxX6UdUKuFmKwmizpX58upquldbIIblufBUa/ffjaZnvkmon7KZF/RHhh3bYstllVcBEd3Ht6UAnpNLAl6+kQ82zNlvOUNm05HFIu80/4p0EVBPI59KeZusUpdx2uoWJZpRAtdzRkSaCceHDIDHlPJiOrykCGpdfVck1AV1vdIrhgk7HJZxtyUAcilMg+mnY8QqBOOCtwOk27Fkx0Rm+i9nxVF4bw+TVYvOkGIUseUinkBs/5YY/HIqSvUoEo374kwMRTBJWO7Q8IYku2vf+kKyNY85owz3BG2dAOlQKkHHqYPMmvuIee5zzpa2XqnpKXpr717imETIkKXUKyg2W+t+aXXd6kOLBCUU8LknVRqZxuio7xbLKufsJNgGqMHWa4mCdbPliwcM6YtqTGZ+iddRkIt1DAOGdpvwTV0XmxB3zpbUjNETAh95WrMB/262u4y55sYODSkNpkWpk0Qy71mTOz1Z+V45Lwsf5wFj3wY7ox98jDw0ATqjRi1+/dIZjH2IpWhdqbJd04U+XToZ8IunrOwuxNP4iHHu7uzVYE2oc3le7oeH0j8B4im8Ikm2atf/ib4uqkgupLlYHhZZ/6336sVpQMqZY4jq7LmStzzvPPWeJkLUHXN+dG48Pw5HMFTvcdj7oReQ7ust/XaNKeS4HQSisnKRAnT+9SwdqTXedOmzO6JTt/akwqqTQETbVN5J3VZiZNVTEEfoSylA1eth12lcxDeNWeQfwQaqQjhtB5ukxCdU0kRC5YHkfeDgFzSpEY5U1SoLJoN8SAl8X+Yc3x5kcQa2O/tmks8meMg1+0IfYLwxzDk4xl9Qv5+PPg9Z51KUmnbPV9OXGa+pkrRhk1v2iJavyyTOCt8D1VU9YSKWegIlfLvNq06XlpdRW6zZFfy6FVuXslZcjW2n1P5ckZUVxgxBsYK0qLOGkuMSw1+mWOc3/3hbBoTWEKlwlYOTZ6ntOfU1L6rOmjkHLJ05xdxtmDN98+wCmQ9t6dh0tDAlmgw6QXLJyhZrlLFlkzAz9HntED5pSpLFM8PS1Wmi8SezZuRbvhpmes1gNh6Y03vTZNrUMZ4HUXAHCbFGtUWdSlYUCFcI+XTn6/mjYSwQHdbNC5a2D/wEEoM3b89DyAyPnavVLekbVDiUK5Thcn1qgOw5LiIEOmKVmPt8PIaGrAKvarrBqQJe2irtXix7kGABs/kBEKtilpG7L7c+jqSmZ9awQJiaYuSlsRRK2QkSxmkG/iqXmz5W0NW188umL5H30S/VdYv8sKJa/FRs0ONHNeTyQ1kmGd7WrMk827GMIqPruOVvxA127wDWE8WWrdtyqBANto/HIMtVaKf5OXmllsLwCdhd2Q6nKzmq12PB0y9wh7tk+EpYSed1U3rk1WUJo2gYxRVcVYKNxMS/kCCubnr3+6230d9CrTBclQXmkp75APP6FgIJyru0Nc9KGtsuTlRPGa5fqWBR2v/kbAgHkrt2J8JlqiZgxrWWkkJ38DxgQC1MoQGPRyJsinQ+8TqxjNfz5mk2OUhxRUOaCopKdq7Fn7KCgMJEkShck+DJ7UgxZ00ffH4NjLnOJ5d+8cVl+fPIJ6jYSA1hoqzPYs4DzIRPViJl3w+PZ9M7sGYUg43SQFbLTqsU7G4nDfw+kyFm2faUYHVIkzqlU1xGn2AS+I1CwNMM2otDOfWjaawnCFPTIe/QfZUurWUZWmEelKqnpDVNdwGkLSttGMdv7N/erNx9A7p2lXLuh2TKcNDS5Pp3VrYheWNQ4DDo6J+g20SSg+VAf7NSZO7936wP8MT7DKBjGmlY4h5HMrZP/KsQgxUF3sEKzrIC1TN6jDwE71CA9YfabIICTvynIxVq/5LlRhNqX+Q2rSuMbsfrvJn8npLaJcM7Ple7Vr31WXKK3rLVNPuLzZxT9APxONVbeKRSmT0WYSzwuroWSqDBD7sLc8LZFWsBITtNbXTfWVz8k9dlR8dr3FpUsyPvRjFhejDdSQyen3/U9iYuCwuG/+qzV8JLI5cqDAdPzJGt/97JM+zaIdnFZ/zIOWwJ6m9cpXU+4VXXWD6dcA7iXCoJII=";
+function unlock() {
+  var pwd = document.getElementById("pwd").value;
+  if (!pwd) return;
+  try {
+    var decrypted = CryptoJS.AES.decrypt(encData, pwd);
+    var pt = decrypted.toString(CryptoJS.enc.Utf8);
+    if (!pt || pt.length < 10) throw new Error("bad");
+    document.getElementById("lock-screen").style.display = "none";
+    var c = document.getElementById("briefing-content");
+    c.style.display = "block";
+    var doc = new DOMParser().parseFromString(pt, "text/html");
+    var styles = doc.querySelectorAll("style, link[rel=stylesheet]");
+    for (var i = 0; i < styles.length; i++) {
+      document.head.appendChild(styles[i].cloneNode(true));
+    }
+    c.innerHTML = doc.body.innerHTML;
+    document.title = doc.title || "Briefing";
+    sessionStorage.setItem("briefing_pwd", pwd);
+  } catch(e) {
+    document.getElementById("err").textContent = "Wrong password. Try again.";
+    document.getElementById("pwd").value = "";
+    document.getElementById("pwd").focus();
+  }
+}
+(function() {
+  var saved = sessionStorage.getItem("briefing_pwd");
+  if (saved) { document.getElementById("pwd").value = saved; unlock(); }
+  document.getElementById("pwd").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") unlock();
+  });
+})();
+</script>
 </body>
 </html>
