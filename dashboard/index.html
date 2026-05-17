@@ -274,39 +274,91 @@ footer{padding:20px 32px;border-top:1px solid var(--border);color:var(--text3);f
 
 <!-- ═══════════ TAB 4: REDDITO ═══════════ -->
 <div class="pane" id="pane-income">
-  <div class="grid g3" style="margin-bottom:16px">
-    <div class="card kpi"><div class="value" style="color:var(--text3)">€0</div><div class="label">2026</div><div class="sub">Anno di accumulo</div></div>
-    <div class="card kpi green"><div class="value">€177K</div><div class="label">2027 (primo anno)</div><div class="sub">€59K a testa</div></div>
-    <div class="card kpi green"><div class="value">€183K</div><div class="label">2028+ (a regime)</div><div class="sub">€61K a testa</div></div>
-  </div>
+  <!-- KPI cards — populated by JS -->
+  <div class="grid g3" style="margin-bottom:16px" id="income-kpis"></div>
+
+  <!-- 2026 PARZIALE -->
   <div class="card" style="margin-bottom:16px">
-    <div class="card-title">Composizione Reddito 2027</div>
+    <div class="card-title" style="color:var(--amber)">2026 — Primo incasso parziale (dicembre)</div>
+    <div style="text-align:center;padding:14px;background:var(--amber-bg);border-radius:var(--radius);margin-bottom:14px">
+      <div style="font-size:24px;font-weight:700;color:var(--amber)" id="inc26-total">—</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:4px" id="inc26-pp">Solo redditi passivi — gli acquisti continuano</div>
+    </div>
+    <table>
+      <thead><tr><th>Fonte</th><th class="r">Lordo</th><th class="r">Tasse</th><th class="r">Netto</th></tr></thead>
+      <tbody id="inc26-body"></tbody>
+      <tfoot id="inc26-foot"></tfoot>
+    </table>
+    <div style="margin-top:10px;font-size:12px;color:var(--text3)">I fondi monetari vengono venduti per comprare azioni: il capitale va in azioni, il guadagno va alla famiglia. Cedole BTP e dividendi TDIV arrivano sul conto automaticamente.</div>
+  </div>
+
+  <!-- 2027 PRIMO ANNO -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title" style="color:var(--green)">2027 — Primo anno di reddito pieno</div>
+    <div style="text-align:center;padding:14px;background:var(--green-bg);border-radius:var(--radius);margin-bottom:14px">
+      <div style="font-size:24px;font-weight:700;color:var(--green)" id="inc27-total">—</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:4px" id="inc27-pp">—</div>
+    </div>
     <div class="grid g2">
       <div class="chart-wrap" style="height:260px"><canvas id="ch-income-pie"></canvas></div>
       <div>
         <table>
           <thead><tr><th>Fonte</th><th class="r">Lordo</th><th class="r">Tasse</th><th class="r">Netto</th></tr></thead>
-          <tbody>
-            <tr><td>Dividendi TDIV</td><td class="r">€18.000</td><td class="r" style="color:var(--red)">€4.700</td><td class="r">€13.300</td></tr>
-            <tr><td>Vendita VUAA (dic)</td><td class="r">€110.000</td><td class="r" style="color:var(--red)">€2.900</td><td class="r">€107.100</td></tr>
-            <tr><td>Cedole BTP</td><td class="r">€12.600</td><td class="r" style="color:var(--red)">€1.600</td><td class="r">€11.000</td></tr>
-            <tr><td>Monetari</td><td class="r">€30.000</td><td class="r" style="color:var(--red)">€80</td><td class="r">€29.920</td></tr>
-            <tr><td>USD + Cassa</td><td class="r">€16.200</td><td class="r" style="color:var(--red)">€100</td><td class="r">€16.100</td></tr>
-          </tbody>
-          <tfoot><tr><td>Totale</td><td class="r">€187K</td><td class="r" style="color:var(--red)">€9,4K</td><td class="r" style="color:var(--green)">€177K</td></tr></tfoot>
+          <tbody id="inc27-body"></tbody>
+          <tfoot id="inc27-foot"></tfoot>
         </table>
-        <div style="margin-top:12px;font-size:12px;color:var(--text3)">Tassazione effettiva: ~5% (BTP al 12,5%, dividendi al 26%, plusvalenze minime nei primi anni)</div>
+        <div style="margin-top:10px;font-size:12px;color:var(--text3)" id="inc27-taxnote"></div>
       </div>
     </div>
   </div>
+
+  <!-- 2028+ A REGIME -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title" style="color:var(--blue)">Dal 2028 — Anno pieno a regime</div>
+    <div style="text-align:center;padding:14px;background:var(--blue-bg);border-radius:var(--radius);margin-bottom:14px">
+      <div style="font-size:24px;font-weight:700;color:var(--blue)" id="inc28-total">—</div>
+      <div style="font-size:13px;color:var(--text2);margin-top:4px" id="inc28-pp">—</div>
+    </div>
+    <table>
+      <thead><tr><th>Fonte</th><th class="r">Lordo</th><th class="r">Tasse</th><th class="r">Netto</th></tr></thead>
+      <tbody id="inc28-body"></tbody>
+      <tfoot id="inc28-foot"></tfoot>
+    </table>
+  </div>
+
+  <!-- SIMULATORE -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Simulatore — Modifica le ipotesi</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 24px">
+      <div>
+        <label style="font-size:12px;color:var(--text2);display:block;margin-bottom:4px">Rendimento VUAA (S&P 500) <span id="lbl-vuaa-r" style="font-weight:700;color:var(--blue)">8%</span></label>
+        <input type="range" id="sl-vuaa-r" min="0" max="15" step="0.5" value="8" style="width:100%;accent-color:var(--blue)">
+      </div>
+      <div>
+        <label style="font-size:12px;color:var(--text2);display:block;margin-bottom:4px">Dividend yield TDIV <span id="lbl-tdiv-y" style="font-weight:700;color:var(--green)">3.3%</span></label>
+        <input type="range" id="sl-tdiv-y" min="1" max="6" step="0.1" value="3.3" style="width:100%;accent-color:var(--green)">
+      </div>
+      <div>
+        <label style="font-size:12px;color:var(--text2);display:block;margin-bottom:4px">Tasso monetari <span id="lbl-mon-r" style="font-weight:700;color:var(--amber)">2%</span></label>
+        <input type="range" id="sl-mon-r" min="0" max="5" step="0.1" value="2" style="width:100%;accent-color:var(--amber)">
+      </div>
+      <div>
+        <label style="font-size:12px;color:var(--text2);display:block;margin-bottom:4px">Tasso prelievo annuo <span id="lbl-draw" style="font-weight:700;color:var(--red)">3.5%</span></label>
+        <input type="range" id="sl-draw" min="2" max="5" step="0.1" value="3.5" style="width:100%;accent-color:var(--red)">
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
   <div class="card">
     <div class="card-title">Calendario Incassi Annuali</div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px">
-      <div style="text-align:center;padding:12px;background:var(--green-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">MAR · GIU · SET · DIC</div><div style="font-size:16px;font-weight:600;color:var(--green);margin-top:4px">€4K netti</div><div style="font-size:11px;color:var(--text2)">Dividendi TDIV</div></div>
-      <div style="text-align:center;padding:12px;background:var(--blue-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">Ogni 6 mesi</div><div style="font-size:16px;font-weight:600;color:var(--blue);margin-top:4px">€5,5K netti</div><div style="font-size:11px;color:var(--text2)">Cedole BTP</div></div>
+      <div style="text-align:center;padding:12px;background:var(--green-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">MAR · GIU · SET · DIC</div><div style="font-size:16px;font-weight:600;color:var(--green);margin-top:4px" id="cal-div">—</div><div style="font-size:11px;color:var(--text2)">Dividendi TDIV</div></div>
+      <div style="text-align:center;padding:12px;background:var(--blue-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">Ogni 6 mesi</div><div style="font-size:16px;font-weight:600;color:var(--blue);margin-top:4px" id="cal-btp">—</div><div style="font-size:11px;color:var(--text2)">Cedole BTP</div></div>
       <div style="text-align:center;padding:12px;background:var(--purple-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">APRILE</div><div style="font-size:16px;font-weight:600;color:var(--purple);margin-top:4px">Check</div><div style="font-size:11px;color:var(--text2)">Ribilanciamento 45-55%</div></div>
-      <div style="text-align:center;padding:12px;background:var(--amber-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">DICEMBRE</div><div style="font-size:16px;font-weight:600;color:var(--amber);margin-top:4px">€61K × 3</div><div style="font-size:11px;color:var(--text2)">Distribuzione annuale</div></div>
+      <div style="text-align:center;padding:12px;background:var(--amber-bg);border-radius:var(--radius)"><div style="font-size:11px;color:var(--text3)">DICEMBRE</div><div style="font-size:16px;font-weight:600;color:var(--amber);margin-top:4px" id="cal-dist">—</div><div style="font-size:11px;color:var(--text2)">Distribuzione annuale</div></div>
     </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text3)">Tassazione effettiva: ~5–6% (BTP al 12,5%, dividendi al 26%, plusvalenze minime nei primi anni)</div>
   </div>
 </div>
 
@@ -795,8 +847,131 @@ new Chart(document.getElementById('ch-dca'),{type:'bar',data:{labels:dcaMonths,d
 let cum=376;
 document.getElementById('dca-body').innerHTML=dcaMonths.map((m,i)=>{cum=dcaCum[i];const isCurrent=i===0;return '<tr'+(isCurrent?' style="background:var(--blue-bg)"':'')+'><td'+(isCurrent?' style="font-weight:600"':'')+'>'+m+'</td><td class="r">€'+fi(i<10?150:134)+'K</td><td class="r">€70K</td><td class="r" style="font-weight:600;color:var(--blue)">€'+fi(cum)+'K</td></tr>';}).join('');
 
-// INCOME PIE
-new Chart(document.getElementById('ch-income-pie'),{type:'doughnut',data:{labels:['Vendita VUAA','Monetari','Dividendi TDIV','USD+Cassa','Cedole BTP'],datasets:[{data:[107.1,29.9,13.3,16.1,11],backgroundColor:[C.blue,'#DAA520',C.green,C.cyan,'#BA7517'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:true,position:'bottom',labels:{color:C.tick,font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:c=>c.label+': €'+Math.round(c.parsed*10)/10+'K netti'}}}}});
+// INCOME CALCULATOR — LIVE
+(function(){
+  // Portfolio data at target (end of DCA, April 2027)
+  const P={
+    vuaa:2230, tdiv:550, btp:449, monetEur:1464, monetUsd:159, cassa:146, riserva:500,
+    btpCouponRate:0.028, // cedola annua lorda su nominale
+    btpNominale:450, // ~€450K nominale
+    tdivNow:162, vuaaNow:151 // valori attuali per 2026
+  };
+  // Defaults
+  let vuaaR=8, tdivY=3.3, monR=2, drawR=3.5;
+  const $=id=>document.getElementById(id);
+
+  function fk(v){return '€'+Math.round(v).toLocaleString('it-IT');}
+
+  function calcRow(label,gross,taxRate){
+    const tax=Math.round(gross*taxRate);
+    return {label, gross:Math.round(gross), tax, net:Math.round(gross)-tax};
+  }
+
+  function renderTable(bodyId,footId,rows){
+    const body=$(bodyId), foot=$(footId);
+    if(!body||!foot) return;
+    let tG=0,tT=0,tN=0;
+    body.innerHTML=rows.map(r=>{tG+=r.gross;tT+=r.tax;tN+=r.net;
+      return '<tr><td>'+r.label+'</td><td class="r">'+fk(r.gross)+'</td><td class="r" style="color:var(--red)">'+fk(r.tax)+'</td><td class="r">'+fk(r.net)+'</td></tr>';
+    }).join('');
+    foot.innerHTML='<tr><td>Totale</td><td class="r">'+fk(tG)+'</td><td class="r" style="color:var(--red)">'+fk(tT)+'</td><td class="r" style="color:var(--green);font-size:15px">'+fk(tN)+'</td></tr>';
+    return {gross:tG,tax:tT,net:tN};
+  }
+
+  let incomePie=null;
+
+  function recalc(){
+    // ---- 2026 PARTIAL (only passive: 2 quarters TDIV div + 2 BTP coupons + monetari gain on ~€1.05M sold) ----
+    const div26=P.tdivNow*(tdivY/100)*0.5; // ~2 quarters
+    const btp26=P.btpNominale*(P.btpCouponRate)*1; // 2 semiannual coupons = 1 year
+    const mon26Gain=1050*(monR/100); // gain on ~€1.05M monetari being sold during DCA
+    const rows26=[
+      calcRow('Dividendi TDIV (2 trimestri)',div26*1000,0.26),
+      calcRow('Cedole BTP (2 semestrali)',btp26*1000,0.125),
+      calcRow('Guadagno monetari venduti',mon26Gain*1000,0.26)
+    ];
+    const t26=renderTable('inc26-body','inc26-foot',rows26);
+    $('inc26-total').textContent='~'+fk(t26.net)+' netti';
+    $('inc26-pp').textContent='→ ~'+fk(Math.round(t26.net/3))+' a testa';
+
+    // ---- 2027 FIRST YEAR (full: DCA completes March, then 9 months full) ----
+    const totalInv27=P.vuaa+P.tdiv+P.btp+P.monetEur+P.monetUsd+P.cassa;
+    const drawAmt27=totalInv27*(drawR/100);
+    const divTdiv27=P.tdiv*(tdivY/100); // full year dividends
+    const btpCoup27=P.btpNominale*P.btpCouponRate;
+    const monGain27=(P.monetEur+P.monetUsd)*(monR/100);
+    const cassaGain27=P.cassa*0.015;
+    const passiveGross27=divTdiv27+btpCoup27+monGain27+cassaGain27;
+    const vuaaSale27=Math.max(0,drawAmt27-passiveGross27*0.74); // sell VUAA to make up target
+    const rows27=[
+      calcRow('Dividendi TDIV',divTdiv27*1000,0.26),
+      calcRow('Vendita VUAA (dicembre)',vuaaSale27*1000,0.026), // low CGT early years
+      calcRow('Cedole BTP',btpCoup27*1000,0.125),
+      calcRow('Rendimento monetari',(monGain27)*1000,0.26),
+      calcRow('USD + Cassa',cassaGain27*1000,0.26)
+    ];
+    const t27=renderTable('inc27-body','inc27-foot',rows27);
+    $('inc27-total').textContent='~'+fk(t27.net)+' netti';
+    $('inc27-pp').textContent='Acquisti completati a marzo, poi 9 mesi a pieno regime → ~'+fk(Math.round(t27.net/3))+' a testa';
+    $('inc27-taxnote').textContent='Tassazione effettiva: ~'+Math.round(t27.tax/t27.gross*100)+'% (BTP al 12,5%, dividendi al 26%, plusvalenze VUAA minime)';
+
+    // Update pie chart
+    const pieData=rows27.map(r=>Math.round(r.net/1000*10)/10);
+    if(incomePie){
+      incomePie.data.datasets[0].data=pieData;
+      incomePie.update();
+    }else{
+      incomePie=new Chart($('ch-income-pie'),{type:'doughnut',data:{labels:rows27.map(r=>r.label),datasets:[{data:pieData,backgroundColor:[C.green,C.blue,'#BA7517','#DAA520',C.cyan],borderWidth:0,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:true,position:'bottom',labels:{color:C.tick,font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:c=>c.label+': €'+c.parsed+'K netti'}}}}});
+    }
+
+    // ---- 2028+ REGIME ----
+    const totalInv28=totalInv27*(1+(vuaaR/100)*0.5+(monR/100)*0.5); // approx growth
+    const drawAmt28=totalInv28*(drawR/100);
+    const divTdiv28=(P.tdiv*1.02)*(tdivY/100);
+    const btpCoup28=btpCoup27;
+    const monGain28=(P.monetEur+P.monetUsd)*(monR/100);
+    const cassaGain28=P.cassa*0.015;
+    const passive28=divTdiv28+btpCoup28+monGain28+cassaGain28;
+    const vuaaSale28=Math.max(0,drawAmt28-passive28*0.74);
+    const rows28=[
+      calcRow('Dividendi TDIV',divTdiv28*1000,0.26),
+      calcRow('Vendita VUAA (dicembre)',vuaaSale28*1000,0.04), // slightly higher CGT
+      calcRow('Cedole BTP',btpCoup28*1000,0.125),
+      calcRow('Rendimento monetari',monGain28*1000,0.26),
+      calcRow('USD + Cassa',cassaGain28*1000,0.26)
+    ];
+    const t28=renderTable('inc28-body','inc28-foot',rows28);
+    $('inc28-total').textContent='~'+fk(t28.net)+' netti → '+fk(Math.round(t28.net/3))+' a testa';
+    $('inc28-pp').textContent='Ogni anno, distribuiti a dicembre, per 30 anni';
+
+    // KPI CARDS
+    $('income-kpis').innerHTML=
+      '<div class="card kpi"><div class="value" style="color:var(--amber)">'+fk(t26.net)+'</div><div class="label">2026 (parziale)</div><div class="sub">'+fk(Math.round(t26.net/3))+' a testa</div></div>'+
+      '<div class="card kpi green"><div class="value">'+fk(t27.net)+'</div><div class="label">2027 (primo anno)</div><div class="sub">'+fk(Math.round(t27.net/3))+' a testa</div></div>'+
+      '<div class="card kpi blue"><div class="value">'+fk(t28.net)+'</div><div class="label">2028+ (a regime)</div><div class="sub">'+fk(Math.round(t28.net/3))+' a testa</div></div>';
+
+    // CALENDAR
+    $('cal-div').textContent='~'+fk(Math.round(divTdiv28*1000*0.74/4))+' netti';
+    $('cal-btp').textContent='~'+fk(Math.round(btpCoup28*1000*0.875/2))+' netti';
+    $('cal-dist').textContent=fk(Math.round(t28.net/3))+' × 3';
+  }
+
+  // Slider wiring
+  ['vuaa-r','tdiv-y','mon-r','draw'].forEach(s=>{
+    const sl=$('sl-'+s), lbl=$('lbl-'+s);
+    if(!sl) return;
+    sl.addEventListener('input',()=>{
+      lbl.textContent=sl.value+'%';
+      if(s==='vuaa-r') vuaaR=+sl.value;
+      if(s==='tdiv-y') tdivY=+sl.value;
+      if(s==='mon-r') monR=+sl.value;
+      if(s==='draw') drawR=+sl.value;
+      recalc();
+    });
+  });
+
+  recalc();
+})();
 
 // PROJECTION
 const projData=[];let eq=376,safe=5186;
